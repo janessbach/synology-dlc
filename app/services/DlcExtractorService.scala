@@ -16,12 +16,13 @@ class DlcExtractorService {
   def extract(file: File): List[DlcFile] = {
 
     Try(DLCDecrypter.decrypt(file).getDlcFiles).map { files =>
-      files.map(file => new DlcFile(file.getFilename, file.getUrl))
+      files.toList.map(file => new DlcFile(file.getFilename, file.getUrl))
     }.recover {
       case e: Exception =>
-        logger.error(s"could not extract dlc file ${file.getAbsolutePath}", e)
+        logger.error("could not extract dlc file", e)
         List.empty
-    }.get.toList
+    }.toOption
+      .getOrElse(List.empty)
 
   }
 
