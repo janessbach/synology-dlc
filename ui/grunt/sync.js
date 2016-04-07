@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                         'css/*.min.css',
                         'css/**/skin-blue.min.css',
                         'js/*.min.js',
-                        'img/*.png'
+                        'img/**'
                     ],
                     dest: 'public/'
                 },
