@@ -1,0 +1,18 @@
+{
+  "name": "synology-dlc",
+  "private": true,
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "bower": "1.4.2",
+    "grunt-bower-install-simple": "1.1.4",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-clean": "0.7.0",
+    "grunt-contrib-concat": "0.5.1",
+    "grunt-contrib-jshint": "0.11.3",
+    "load-grunt-tasks": "3.1.0"
+  },
+  "engines": {
+    "node": ">=0.12.2",
+    "npm": ">=2.7.4"
+  }
+}
