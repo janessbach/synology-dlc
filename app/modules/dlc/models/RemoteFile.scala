@@ -1,14 +1,15 @@
 package modules.dlc.models
 
 import de.itgecko.dlc.decrypter.DLCFile
+import play.api.libs.json.{Json, Writes}
 
 case class RemoteFile(fileName: String, url: String)
 
-
 object RemoteFile {
 
-  def apply(file: DLCFile): RemoteFile = new RemoteFile(file.getFilename, file.getUrl)
+  implicit val writes = Json.writes[RemoteFile]
+  implicit val reads = Json.reads[RemoteFile]
 
-  def apply(files: List[DLCFile]): List[RemoteFile] = files map apply
+
 
 }
