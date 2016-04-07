@@ -15,30 +15,20 @@ module.exports = function (grunt) {
                 },
                 {
                     cwd: global.dlc.BOOTSTRAP_ASSETS,
-                    src: ['css/*.min.css'],
-                    dest: 'public/'
-                },
-                {
-                    cwd: global.dlc.BOOTSTRAP_ASSETS,
-                    src: ['js/*.min.js'],
+                    src: [
+                        'css/*.min.css',
+                        'js/*.min.js'
+                    ],
                     dest: 'public/'
                 },
                 {
                     cwd: global.dlc.ADMINLTE_ASSETS,
                     src: [
                         'css/*.min.css',
-                        'css/**/skin-blue.min.css'
+                        'css/**/skin-blue.min.css',
+                        'js/*.min.js',
+                        'img/*.png'
                     ],
-                    dest: 'public/'
-                },
-                {
-                    cwd: global.dlc.ADMINLTE_ASSETS,
-                    src: ['js/*.min.js'],
-                    dest: 'public/'
-                },
-                {
-                    cwd: global.dlc.ADMINLTE_ASSETS,
-                    src: ['img/*.png'],
                     dest: 'public/'
                 },
                 {
