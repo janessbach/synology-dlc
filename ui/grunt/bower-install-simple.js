@@ -9,11 +9,6 @@ module.exports = function (grunt) {
             options: {
                 production: false
             }
-        },
-        dist: {
-            options: {
-                production: true
-            }
         }
     });
 };

@@ -1,6 +1,6 @@
 {
   "name": "synology-dlc",
   "dependencies": {
-    "treeselect": "1.0.2"
+    "ui-template" : "https://github.com/almasaeed2010/AdminLTE.git"
   }
 }
