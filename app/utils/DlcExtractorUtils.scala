@@ -1,6 +1,7 @@
 package utils
 
 import models.DlcFile
+import models.DlcFile._
 import de.itgecko.dlc.decrypter.DLCDecrypter
 
 import play.api.Logger
@@ -15,9 +16,7 @@ object DlcExtractorUtils {
 
   def extract(file: File): List[DlcFile] = {
 
-    Try(DLCDecrypter.decrypt(file).getDlcFiles).map { files =>
-      files.map(file => new DlcFile(file.getFilename, file.getUrl)).toList
-    } match {
+    Try(DLCDecrypter.decrypt(file).getDlcFiles.toList).map(apply(_)) match {
       case Success(v) => v
       case Failure(e) => logger.error("could not extract dlc file", e); List.empty
     }
