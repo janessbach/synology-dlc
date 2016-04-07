@@ -1,13 +1,13 @@
 package utils
 
-import models.RemoteFile
-import de.itgecko.dlc.decrypter.DLCDecrypter
+import java.io.File
 
+import de.itgecko.dlc.decrypter.DLCDecrypter
+import models.RemoteFile
 import play.api.Logger
+
 import scala.collection.JavaConversions._
 import scala.util.{Failure, Success, Try}
-
-import java.io.File
 
 object DlcExtractorUtils {
 

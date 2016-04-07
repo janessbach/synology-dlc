@@ -2,7 +2,7 @@ package models
 
 import de.itgecko.dlc.decrypter.DLCFile
 
-case class RemoteFile(fileName: String, url: String)
+case class RemoteFile(name: String, url: String, available: Boolean = true)
 
 
 object RemoteFile {
