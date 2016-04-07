@@ -1,6 +1,11 @@
 This is your new Play application
 =================================
 
+Run the application with
+========================
+./activator
+;npmInstall;grunt;compile
+
 This file will be packaged with your application when using `activator dist`.
 
 There are several demonstration files available in this template.
