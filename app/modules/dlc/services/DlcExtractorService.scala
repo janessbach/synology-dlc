@@ -1,9 +1,9 @@
-package services
+package modules.dlc.services
 
-import models.RemoteFile
 import java.io.File
 
-import utils.DlcExtractorUtils
+import modules.dlc.models.RemoteFile
+import modules.dlc.utils.DlcExtractorUtils
 
 class DlcExtractorService {
 

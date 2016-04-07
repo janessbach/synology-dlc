@@ -1,4 +1,4 @@
-package models
+package modules.dlc.models
 
 import de.itgecko.dlc.decrypter.DLCFile
 
