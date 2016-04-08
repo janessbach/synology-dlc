@@ -1,11 +1,11 @@
 package app.controllers
 
-import mixins.suites.ControllerTest
+import mixins.suites.OneApplicationPerTest
 import play.api.test.FakeRequest
 
 import play.api.test.Helpers._
 
-class ApiControllerSpec extends ControllerTest {
+class ApiControllerSpec extends OneApplicationPerTest {
 
   "ApiController" should {
      "render an valid json response for an valid dlc file" in {

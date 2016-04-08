@@ -14,4 +14,4 @@ import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
   *  }
   * }
  */
-trait ControllerTest extends PlaySpec with BaseMixin with OneAppPerTest
+trait OneApplicationPerTest extends PlaySpec with BaseMixin with OneAppPerTest

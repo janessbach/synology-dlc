@@ -1,17 +1,15 @@
 package defaults
 
-import org.specs2.mutable.Specification
-import play.api.test.WithApplication
-import utils.English
+import mixins.suites.OneApplicationPerTest
 
-class ScalaHtmlSpec extends Specification with ScalaHtmlSpecMock {
+class ScalaHtmlSpec extends OneApplicationPerTest {
 
   "Snippet" should {
-    "be rendered properly" in new WithApplication() with English {
+    "be rendered properly" in {
       // pubmedSnippet("PubMed", pubMedModel).compressed === Html(expectedHtml).compressed
     }
 
-    "render nothing if ..." in new WithApplication() with English {
+    "render nothing if ..." in {
       // pubmedSnippet("PubMed", PubMedModel(Nil)).body.trim must be empty
     }
   }
