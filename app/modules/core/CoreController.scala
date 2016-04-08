@@ -1,16 +1,13 @@
-package modules.core.utils
+package modules.core
 
 import javax.inject.Inject
 
-import modules.core.configuration.services.ConfigurationService
 import play.api.mvc.{AnyContent, BodyParser, Controller, Result}
 
 import scala.concurrent.Future
 
 class CoreController extends Controller {
 
-  @Inject
-  var config: ConfigurationService = null
   @Inject
   var actionBuilder: CoreAction = null
 

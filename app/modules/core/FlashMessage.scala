@@ -1,4 +1,4 @@
-package modules.core.utils
+package modules.core
 
 import play.api.mvc.Result
 

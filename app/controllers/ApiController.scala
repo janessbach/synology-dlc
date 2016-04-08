@@ -1,7 +1,7 @@
 package controllers
 
 import javax.inject._
-import modules.core.utils.CoreController
+import modules.core.CoreController
 import modules.dlc.services.DlcExtractorService
 import play.api.libs.json.Json
 import scala.concurrent.{ExecutionContext, Future}
@@ -13,11 +13,10 @@ class ApiController @Inject()(dlcExtractorService: DlcExtractorService)
   private val HtmlDlcInputName = "dlc-file"
 
   def dlcDecrypt = BaseAction(parse.multipartFormData) { implicit context =>
-      context.request.body.file(HtmlDlcInputName) map { item =>
-
-        Future.successful(Ok(Json.toJson(dlcExtractorService.extract(item.ref.file))))
-
-      } getOrElse Future.successful(BadRequest)
+    context.request.body.file(HtmlDlcInputName) map { item =>
+      Future.successful(Ok(Json.toJson(dlcExtractorService.extract(item.ref.file))))
+    } getOrElse Future.successful(BadRequest)
   }
 
 }
+

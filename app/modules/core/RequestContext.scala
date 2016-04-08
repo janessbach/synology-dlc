@@ -1,8 +1,9 @@
-package modules.core.utils
+package modules.core
 
-import modules.core.authentication.models.User
+import modules.synology.models.User
 import play.api.i18n.Messages
 import play.api.mvc.RequestHeader
+
 
 class RequestContext[+A](val request: EnrichedRequest[A], val messages : Messages, val user: Option[User] = None) {
 
@@ -13,7 +14,6 @@ class RequestContext[+A](val request: EnrichedRequest[A], val messages : Message
        |${request.method} ${request.path}
        |=================
        |Headers: ${request.headers}
-       |Identifier: ${request.buildIdentifier}
        |Language: ${messages.lang}
        |User: $user
        |=================""".stripMargin
