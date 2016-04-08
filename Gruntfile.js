@@ -11,4 +11,8 @@ module.exports = function (grunt) {
     grunt.loadTasks('ui/grunt');
 
     require('load-grunt-tasks')(grunt);
+
+    grunt.registerTask('test', [
+
+    ]);
 };

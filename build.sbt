@@ -12,17 +12,17 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala).dependsOn(gruntS
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  ws,
-  "org.mariadb.jdbc" % "mariadb-java-client" % "1.3.3",
-  "com.typesafe.slick" %% "slick-codegen" % "3.1.1",
-  "com.typesafe.play" %% "play-slick" % "1.1.1",
-  "com.typesafe.play" %% "play-slick-evolutions" % "1.1.1",
+  "net.codingwell" %% "scala-guice" % "4.0.1",
   "org.apache.commons" % "commons-lang3" % "3.0",
   "commons-io" % "commons-io" % "2.4",
   "org.scala-lang.modules" % "scala-async_2.11" % "0.9.6-RC2",
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test
+  "com.mohiva" %% "play-html-compressor" % "0.5.0",
+  "org.jsoup" % "jsoup" % "1.8.3",
+  filters,
+  ws,
+  "org.mockito" % "mockito-core" % "1.8.5" % "test",
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test",
+  "de.leanovate.play-mockws" %% "play-mockws" % "2.5.0" % Test
 )
 
 gruntSettings
