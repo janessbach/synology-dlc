@@ -46,7 +46,9 @@ module.exports = function (grunt) {
                     cwd: global.dlc.ICHECK_ASSETS,
                     src: [
                         'square/blue.css',
-                        'square/blue.png'
+                        'square/blue.png',
+                        'flat/blue.css',
+                        'flat/blue.png'
                     ],
                     dest: 'public/css'
                 }
