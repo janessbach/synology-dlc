@@ -20,7 +20,8 @@ libraryDependencies ++= Seq(
   "org.jsoup" % "jsoup" % "1.8.3",
   filters,
   ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0" % "Test",
+  "org.mockito" % "mockito-core" % "1.8.5" % "test",
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test",
   "de.leanovate.play-mockws" %% "play-mockws" % "2.5.0" % Test
 )
 
