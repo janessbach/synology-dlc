@@ -1,54 +1,27 @@
-This is your new Play application
-=================================
+DLC for Synology Download Station - A Modern Web Plugin
+=======================================================
 
-Run the application with
-========================
-./activator
-;npmInstall;grunt;compile
+This is a plugin web service that handles decryption of dlc containers and pushes the links that
+you want to the Synology Download Station via Web API. Furthermore, the web application shows the 
+download of your files that you do not have to switch to the normal Download Station anymore.
 
-This file will be packaged with your application when using `activator dist`.
+Prerequisites
+======================
 
-There are several demonstration files available in this template.
+- This plugin is developed on the Synology NAS 713+ with DSM 6.x
+- It uses the Synology Download Station Official API in Version 20140326
 
-Controllers
-===========
+The tech stack of the app is like 
+- Play Framework 2.5 with Scala
+- Modern Dashboard "AdminLTE"
+- One Click Deployment to your NAS
 
-- HomeController.scala:
+What do you have to consider?
 
-  Shows how to handle simple HTTP requests.
+- You should create an User in your DSM that is able to access the DSM Download Station.
+- You have to login with this user credentials into this application.
 
-- AsyncController.scala:
+Deployment to your NAS
+======================
 
-  Shows how to do asynchronous programming when handling a request.
-
-- CountController.scala:
-
-  Shows how to inject a component into a controller and use the component when
-  handling requests.
-
-Components
-==========
-
-- Module.scala:
-
-  Shows how to use Guice to bind all the components needed by your application.
-
-- Counter.scala:
-
-  An example of a component that contains state, in this case a simple counter.
-
-- ApplicationTimer.scala:
-
-  An example of a component that starts when the application starts and stops
-  when the application stops.
-
-Filters
-=======
-
-- Filters.scala:
-
-  Creates the list of HTTP filters used by your application.
-
-- ExampleFilter.scala
-
-  A simple filter that adds a header to every response.
+** Follow up **

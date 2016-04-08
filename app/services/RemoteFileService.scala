@@ -1,6 +1,6 @@
 package services
 
-import models.RemoteFile
+import modules.dlc.models.RemoteFile
 
 class RemoteFileService {
 
