@@ -1,6 +1,6 @@
 package app.controllers
 
-import mixins.suites.OneApplicationPerTest
+import mixins.OneApplicationPerTest
 import play.api.test.FakeRequest
 
 import play.api.test.Helpers._

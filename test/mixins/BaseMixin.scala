@@ -1,4 +1,4 @@
-package mixins.suites
+package mixins
 
 import org.scalatest.mock.MockitoSugar
 
