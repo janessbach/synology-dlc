@@ -9,16 +9,18 @@
                 </button>
             </div>
         </div>
+        <form class="form" action="/api/decrypt" method="post" enctype="multipart/form-data">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="dlc-file">DLC-File</label>
+                    <input type="file" name="dlc-file">
 
-            <form class="form">
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="dlcInputFile">File input</label>
-                        <input type="file" id="dlcInputFile">
-
-                        <p class="help-block">Upload the dlc file here.</p>
-                    </div>
+                    <p class="help-block">Upload the dlc file here.</p>
                 </div>
-            </form>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Upload</button>
+            </div>
+        </form>
     </div>
 </div>

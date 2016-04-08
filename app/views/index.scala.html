@@ -1,9 +1,0 @@
-@import download._
-@import modules.dlc.models.RemoteFile
-
-@(files: List[RemoteFile])
-
-@main("Welcome to Synology DLC") {
-    @dlcUpload()
-    @remoteFiles(files)
-}

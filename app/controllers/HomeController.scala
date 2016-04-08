@@ -1,18 +1,17 @@
 package controllers
 
 import javax.inject._
-
-import modules.dlc.models.RemoteFile
 import play.api.mvc._
 
 @Singleton
 class HomeController @Inject() extends Controller {
 
   def index = Action {
+    Ok(views.html.login("Login To Synology DLC"))
+  }
 
-    val files = List(RemoteFile("name1", "url1", false), RemoteFile("name2", "url2"))
-
-    Ok(views.html.index(files))
+  def downloads = Action {
+    Ok(views.html.download.downloads())
   }
 
 }

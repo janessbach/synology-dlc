@@ -17,7 +17,8 @@ module.exports = function (grunt) {
                     cwd: global.dlc.BOOTSTRAP_ASSETS,
                     src: [
                         'css/*.min.css',
-                        'js/*.min.js'
+                        'js/*.min.js',
+                        'fonts/**'
                     ],
                     dest: 'public/'
                 },
@@ -35,6 +36,19 @@ module.exports = function (grunt) {
                     cwd: global.dlc.JQUERY_ASSETS,
                     src: ['**/*.min.js'],
                     dest: 'public/js'
+                },
+                {
+                    cwd: global.dlc.ICHECK_ASSETS,
+                    src: ['**/*.min.js'],
+                    dest: 'public/js'
+                },
+                {
+                    cwd: global.dlc.ICHECK_ASSETS,
+                    src: [
+                        'square/blue.css',
+                        'square/blue.png'
+                    ],
+                    dest: 'public/css'
                 }
                 
             ]

@@ -1,0 +1,9 @@
+@import views.html.download.dlcUpload
+@import views.html.download.remoteFilesOverview
+
+@()
+
+@main("Welcome to Synology DLC") {
+    @dlcUpload()
+    @remoteFilesOverview(List.empty)
+}
