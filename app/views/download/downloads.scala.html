@@ -1,0 +1,10 @@
+@import views.html.download.dlcUpload
+@import views.html.download.remoteFilesOverview
+
+@import modules.dlc.models.RemoteFile
+@()
+
+@main("Welcome to Synology DLC") {
+    @dlcUpload()
+    @remoteFilesOverview(List[RemoteFile](RemoteFile("name", "url")))
+}
