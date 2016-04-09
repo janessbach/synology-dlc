@@ -37,9 +37,10 @@ This plugin is developed and tested on the Synology with following configuration
 
 The user management is done directly by your dsm. Therefore, a user with download station credientials is required. 
 
-Used Api
-======================
-[Synology][20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
+Application Interfaces
+========================
+
+Synology_Download_Station_Web_API [20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
 
 Tech stack
 ======================
