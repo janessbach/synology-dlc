@@ -15,6 +15,7 @@ Features and release plans
 The idea is build a web plattform for synology nas systems in a dashboard oriented way.
 Every page and slot handles a certain problem for you. The first dashboard items will be:
 
+<pre>
 Version 1.0 - 31.04
 0. Setup of alpha incl delpoyment strategy
 1. [/Decryption] of dlc files and extraction of their url and filenames and push urls to Synology Disk Station via web api
@@ -23,18 +24,24 @@ Version 1.0 - 31.04
 Planed Featureset:
 Version 1.1 - 30.05
 [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
+</pre>
 
 Open for discussions...
 
 System requirements
 ======================
 
-This plugin is developed on the Synology NAS 713+ with DSM 6.x and NAS 214+ with DSM 5.x.
+This plugin is developed and tested on the Synology with following configurations:
 
-It uses the Synology Download Station Official API in version [20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf).
+- Synology NAS 713+ with DSM 6.x 
+- Synology NAS 214+ with DSM 5.x.
 
-The user management is done directlyby your dsm itself. 
-Therefore a user with download station credientials is required to use this web app.
+The user management is done directly by your dsm. Therefore, a user with download station credientials is required. 
+
+Used Api
+======================
+[Synology][20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
+
 
 Tech stack
 ======================
