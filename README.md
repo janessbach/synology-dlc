@@ -47,11 +47,10 @@ Tech stack
 The idea of this project is also to use modern concepts in the area of delpoyment, testing and scalability.
 Therefore following components were choosen:
 
-- Play Framework 2.5 with Scala and Akka (Backend)
-- Websockets and Socket.io (Backend <-> Frontend)
-- Modern Dashboard "AdminLTE" Theme (brought to us by [almasaeed2010](https://github.com/almasaeed2010/AdminLTE)    
-- Easy delpoyment via sbt and grunt (thanks to sbt-grunt, grunt)
-- Direct deployment via download script directly on your nas system
+- Play Framework 2.5 with Scala and Akka Flow Websockets
+- Modern dashboard theme "AdminLTE" brought to us by [almasaeed2010](https://github.com/almasaeed2010/AdminLTE)    
+- Easy delpoyment via sbt and sbt-grunt and direct deployment via script directly to your nas system
+- Easy update via git pull and ./build.sh
 
 [Open for changes now]
 
@@ -70,4 +69,4 @@ _________________) Socket.io, Scalatest, Mockito, Jasmine
 
 *[@janessbach] loves scala.
 
-*[@] tbd.
+*[@elisabaum] loves scala, too.
