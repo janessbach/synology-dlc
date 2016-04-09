@@ -67,6 +67,7 @@ The "Tech cloud" and development team
              )-._ Sbt, Grunt
 _________________) Socket.io, Scalatest, Mockito, Jasmine
 </pre>
-*[@janessbach] senior software engineer, loves scala.
+
+*[@janessbach] loves scala.
 
 *[@] tbd.
