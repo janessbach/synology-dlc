@@ -67,15 +67,15 @@ Therefore following components were choosen:
 
 
 
-The tech cloud and dev team
-======================
-<rawtext>
+Tech cloud and development
+==========================
+<pre>
 ,--. 
      )
   _'-. _ Synology DSM, Download Station, DSM, DLC
  (    ) ),--. Play Framework, Scala, Async, Akka, Akka
              )-._ Sbt, Grunt
 _________________) Socket.io, Scalatest, Mockito, Jasmine
-<rawtext>
-*[@janessbach] 
-*[]
+</pre>
+*[@janessbach]
+*[@] 
