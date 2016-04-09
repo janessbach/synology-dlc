@@ -6,8 +6,6 @@ At current state it handles decryption of dlc containers and realtime
 download monitoring via websocket wihtin one incredible fluent web app.
 
 The app can easily been deployed right to your nas system at home. 
-There is no connection that goes to a server outside your local area network.
-All interactions with your nas system are done trough the [offical api](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf) of synology dsm.
 
 Features and release plans
 ====================================================================
@@ -40,7 +38,7 @@ The user management is done directly by your dsm. Therefore, a user with downloa
 Application Interfaces
 ========================
 
-Synology_Download_Station_Web_API [20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
+Synology Download Station Web API in [version 20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
 
 Tech stack
 ======================
