@@ -23,6 +23,7 @@ Version 1.0.0 - 31.04.16
 Planed feature set version 1.1.0 - 30.05.16
 <pre>
 1. [/filebot] listener on directory with given pattern set (automatic renaming of movie, series and music)
+2. [/hue] hue integration for changing the colors of your lamps in the network 
 </pre>
 
 System requirements
