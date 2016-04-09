@@ -1,4 +1,4 @@
-package modules.synology.client
+package modules.synology.client.config
 
 import com.google.inject.Inject
 import play.api.Configuration

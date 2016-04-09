@@ -5,7 +5,9 @@
 GET     /                           controllers.HomeController.index
 GET     /downloads                  controllers.HomeController.downloads
 
-POST     /api/decrypt               controllers.ApiController.dlcDecrypt
+POST    /login                      controllers.AuthController.login
+
+POST    /api/decrypt                controllers.ApiController.dlcDecrypt
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

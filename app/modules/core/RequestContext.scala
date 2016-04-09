@@ -2,10 +2,10 @@ package modules.core
 
 import modules.synology.models.User
 import play.api.i18n.Messages
-import play.api.mvc.RequestHeader
+import play.api.mvc.{WrappedRequest, RequestHeader}
 
 
-class RequestContext[+A](val request: EnrichedRequest[A], val messages : Messages, val user: Option[User] = None) {
+class RequestContext[+A](val request: EnrichedRequest[A], val messages : Messages, val user: Option[User] = None) extends WrappedRequest(request = request) {
 
   implicit val requestHeader : RequestHeader = request
 

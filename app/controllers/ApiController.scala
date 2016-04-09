@@ -18,5 +18,9 @@ class ApiController @Inject()(dlcExtractorService: DlcExtractorService)
     } getOrElse Future.successful(BadRequest)
   }
 
+  def available = BaseAction { implicit context =>
+    Future.successful(Ok(""))
+  }
+
 }
 

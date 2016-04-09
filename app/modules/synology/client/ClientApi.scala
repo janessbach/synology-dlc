@@ -1,38 +1,24 @@
 package modules.synology.client
 
 import com.google.inject.Inject
+import modules.synology.client.config.ClientApiConfiguration
+import modules.synology.client.models.{LogoutStatus, LoginStatus}
 import play.api.libs.json._
 import play.api.libs.ws.WSClient
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.Try
-
-case class SessionId(sid: Option[String])
-object SessionId {
-  implicit val writes = Json.writes[SessionId]
-  implicit val reads = Json.reads[SessionId]
-
-  val InvalidSession = SessionId(None)
-}
-
-case class LoginStatus(success: Boolean, data : SessionId)
-object LoginStatus {
-  implicit val writes = Json.writes[LoginStatus]
-  implicit val reads = Json.reads[LoginStatus]
-
-  import SessionId._
-
-  val NotLoggedIn = LoginStatus(success = false, data = InvalidSession)
-}
-
 
 class ClientApi @Inject() (wsClient : WSClient,
                            config: ClientApiConfiguration)(implicit ec: ExecutionContext)  {
 
-  private val ApiPrefix = "http://myds.com:5000"
+  private val ApiPrefix = "http://192.168.1.2:5000"
 
-  private def loginCall[A](username: String, password: String)(implicit writes: Reads[A]) = retrieve(ApiPrefix +
-    "/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=admin&passwd=12345&session=DownloadStation&format=cookie")
+  private def loginCall[A](username: String, password: String)(implicit reads: Reads[A]) = retrieve(ApiPrefix +
+    s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=$username&passwd=$password&session=DownloadStation&format=cookie")
+
+  private def logoutCall[A](implicit reads: Reads[A]) = retrieve(ApiPrefix +
+    s"/webapi/auth.cgi?api=SYNO.API.Auth&version=1&method=logout&session=DownloadStation"
+  )
 
   def login(username: String, password: String) : Future[LoginStatus] = {
 
@@ -41,18 +27,19 @@ class ClientApi @Inject() (wsClient : WSClient,
     loginCall(username, password) map { _ getOrElse NotLoggedIn }
   }
 
-  def logout() = {
+  def logout(loginStatus: LoginStatus) : Future[LogoutStatus] = {
+
+    import LogoutStatus._
+
+    logoutCall map { _ getOrElse LogoutDone }
 
   }
 
   private def retrieve[A](uri: String)(implicit reads: Reads[A]) : Future[Option[A]] = wsClient.url(uri)
     .get().map { response =>
-      Try(Json.toJson(response.body)).toOption match {
-        case Some(jsValue) => reads.reads(jsValue) match {
-          case JsSuccess(v, path) => Some(v)
-          case e: JsError => None
-        }
-        case _ => None
+      Json.parse(response.body).validate[A] match {
+        case JsSuccess(v, path) => Some(v)
+        case e: JsError => None
       }
     }
 }
