@@ -15,20 +15,20 @@ Every page and slot handles a certain problem for you. The first dashboard items
 
 Version 1.0.0 - 31.04.16
 <pre>
-0. Setup of alpha incl delpoyment strategy
-1. [/Decryption] of dlc files and extraction of their url and filenames and push urls to Synology Disk Station via web api
-2. [/Realimte] download monitoring of downloads via Download Station web api
+0. [/setup] of alpha version incl deployment strategy
+1. [/decryption] of dlc files and extraction of their url and filenames and push urls to synology disk station via web api
+2. [/realimte] download monitoring of downloads via download station web api
 </pre>
 
 Planed feature set version 1.1.0 - 30.05.16
 <pre>
-1. [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
+1. [/filebot] listener on directory with given pattern set (automatic renaming of movie, series and music)
 </pre>
 
 System requirements
 ======================
 
-This plugin is developed and tested on the Synology with following configurations:
+This plugin is developed and tested on the synology with following configurations:
 
 - Synology NAS 713+ with DSM 6.x 
 - Synology NAS 214+ with DSM 5.x.
