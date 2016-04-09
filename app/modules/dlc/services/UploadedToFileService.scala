@@ -10,7 +10,6 @@ import scala.concurrent.{ExecutionContext, Future}
 class UploadedToFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService(wsClient) {
 
   override def checkAvailability(file: RemoteFile): Future[Boolean] = {
-
     val response: Future[WSResponse] = wsClient.url(file.url).get()
 
     response.map { response =>
