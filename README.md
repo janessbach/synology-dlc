@@ -23,7 +23,7 @@ Version 1.0 - 31.04
 </pre>
 
 Planed Featureset
-=================
+
 Version 1.1 - 30.05
 <pre>
 1. [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
