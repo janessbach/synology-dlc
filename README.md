@@ -15,15 +15,17 @@ Features and release plans
 The idea is build a web plattform for synology nas systems in a dashboard oriented way.
 Every page and slot handles a certain problem for you. The first dashboard items will be:
 
-<pre>
 Version 1.0 - 31.04
+<pre>
 0. Setup of alpha incl delpoyment strategy
 1. [/Decryption] of dlc files and extraction of their url and filenames and push urls to Synology Disk Station via web api
 2. [/Realimte] download monitoring of downloads via Download Station web api
+</pre>
 
 Planed Featureset:
 Version 1.1 - 30.05
-[/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
+<pre>
+1. [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
 </pre>
 
 Open for discussions...
@@ -42,7 +44,6 @@ Used Api
 ======================
 [Synology][20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
 
-
 Tech stack
 ======================
 
@@ -58,21 +59,6 @@ Therefore following components were choosen:
 [Open for changes now]
 
 ** Follow up **
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Tech cloud and development
 ==========================
