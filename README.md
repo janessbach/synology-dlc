@@ -22,7 +22,8 @@ Version 1.0 - 31.04
 2. [/Realimte] download monitoring of downloads via Download Station web api
 </pre>
 
-Planed Featureset:
+Planed Featureset
+=================
 Version 1.1 - 30.05
 <pre>
 1. [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
