@@ -5,6 +5,10 @@ This is a plugin web service that handles decryption of dlc containers and pushe
 you want to the Synology Download Station via Web API. Furthermore, the web application shows the 
 download of your files that you do not have to switch to the normal Download Station anymore.
 
+Planed Featureset:
+- FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
+- Open for discussions...
+
 Prerequisites
 ======================
 
