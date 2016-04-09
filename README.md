@@ -56,8 +56,8 @@ Therefore following components were choosen:
 
 ** Follow up **
 
-The "Tech cloud" and development team
-======================================
+The tech cloud and development team
+===================================
 <pre>
 ,--. 
      )
