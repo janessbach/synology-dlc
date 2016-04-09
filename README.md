@@ -7,7 +7,7 @@ download monitoring via websocket wihtin one incredible fluent web app.
 
 The app can easily been deployed right to your nas system at home. 
 There is no connection that goes to a server outside your local area network.
-All interactions with your nas system are done trough the (offical api)[https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf] of synology dsm.
+All interactions with your nas system are done trough the [offical api](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf) of synology dsm.
 
 Features and release plans
 ====================================================================
@@ -73,7 +73,7 @@ Tech cloud and development
 ,--. 
      )
   _'-. _ Synology DSM, Download Station, DSM, DLC
- (    ) ),--. Play Framework, Scala, Async, Akka, Akka
+ (    ) ),--. Play Framework, Scala, Async, Akka
              )-._ Sbt, Grunt
 _________________) Socket.io, Scalatest, Mockito, Jasmine
 </pre>
