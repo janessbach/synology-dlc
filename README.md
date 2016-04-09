@@ -13,7 +13,7 @@ Prerequisites
 ======================
 
 - This plugin is developed on the Synology NAS 713+ with DSM 6.x
-- It uses the Synology Download Station Official API in Version 20140326
+- It uses the Synology Download Station Official API in version [20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf)
 
 The tech stack of the app is like 
 - Play Framework 2.5 with Scala
