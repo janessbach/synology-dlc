@@ -11,7 +11,5 @@ class DlcExtractorService @Inject() (fileService: RemoteFileService) {
 
   def extract(file: File): List[RemoteFile] =
     DlcExtractorUtils.extract(file)
-      .map(file => file.copy(available = fileService.checkAvailability(file)))
-
 
 }
