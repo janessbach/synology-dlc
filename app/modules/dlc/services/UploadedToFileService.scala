@@ -7,7 +7,7 @@ import play.api.libs.ws.{WSClient, WSResponse}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class UploadedToFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService(wsClient) {
+class UploadedToFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   override def checkAvailability(file: RemoteFile): Future[Boolean] = {
     val response: Future[WSResponse] = wsClient.url(file.url).get()

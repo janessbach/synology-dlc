@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 import play.api.Logger
 
-class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService(wsClient) {
+class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   private val logger = Logger(classOf[ShareOnlineFileService])
 
