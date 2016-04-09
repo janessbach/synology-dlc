@@ -1,33 +1,42 @@
-[Synology-Dlc] A modern web plugin for the Synology Download Station (DSM, DLC)
-====================================================================
+A modern web plugin for the Synology Disk Station
+=================================================
 
-This is a open source dashboard plugin for synology nas systems. It handles decryption 
-of dlc containers and download monitoring wihtin one incredible fluent web app.
+This is a open source dashboard web app for synology nas systems.
+At current state it handles decryption of dlc containers and realtime
+download monitoring via websocket wihtin one incredible fluent web app.
 
-[Features] and future release plans
+The app can easily been deployed right to your nas system at home. 
+There is no connection that goes to a server outside your local area network.
+All interactions with your nas system are done trough the (offical api)[https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf] of synology dsm.
+
+Features and release plans
 ====================================================================
 
 The idea is build a web plattform for synology nas systems in a dashboard oriented way.
 Every page and slot handles a certain problem for you. The first dashboard items will be:
 
-1. [Decryption of dlc files] and extraction of their url and filenames and push urls to Synology Disk Station via web api.
-2. [Realimte download monitoring] of downloads via Download Station web api.
+Version 1.0 - 31.04
+0. Setup of alpha incl delpoyment strategy
+1. [/Decryption] of dlc files and extraction of their url and filenames and push urls to Synology Disk Station via web api
+2. [/Realimte] download monitoring of downloads via Download Station web api
 
 Planed Featureset:
+Version 1.1 - 30.05
 [/filebot] FileBot Listener on Directory with given Patternset (Automatic Renaming of Movie, Series and Music)
 
 Open for discussions...
 
-[Prerequisites] system requirements
+System requirements
 ======================
 
 This plugin is developed on the Synology NAS 713+ with DSM 6.x and NAS 214+ with DSM 5.x.
 
 It uses the Synology Download Station Official API in version [20140326](https://global.download.synology.com/download/Document/DeveloperGuide/Synology_Download_Station_Web_API.pdf).
 
-The user management is done directlyby your dsm itself. Therefore a user with download station credientials is required to use this web app.
+The user management is done directlyby your dsm itself. 
+Therefore a user with download station credientials is required to use this web app.
 
-The tech stack
+Tech stack
 ======================
 
 The idea of this project is also to use modern concepts in the area of delpoyment, testing and scalability.
@@ -43,11 +52,29 @@ Therefore following components were choosen:
 
 ** Follow up **
 
-The tag cloud
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The tech cloud and dev team
 ======================
-Synology DSM, Download Station, DSM, DLC
-Play, SBT, Akka, Socket.io, Grunt, ScalaTest, Jasmine
-Modern web frontend stack
+,--. 
+    )
+  _'-. _ Synology DSM, Download Station, DSM, DLC
+ (    ) ),--. Play Framework, Scala, Async, Akka, Akka
+             )-._ Sbt, Grunt
+_________________) Socket.io, Scalatest, Mockito, Jasmine
 
-
-
+*[@janessbach] 
+*[]
