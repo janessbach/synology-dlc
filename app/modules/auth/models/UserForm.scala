@@ -6,7 +6,6 @@ import play.api.data.Forms._
 case class UserForm(name: String, password: String)
 
 object UserForm {
-
   val Username = "username"
   val Password = "password"
 

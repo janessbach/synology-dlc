@@ -5,7 +5,7 @@ import play.api.i18n.Messages
 import play.api.mvc.{RequestHeader, WrappedRequest}
 
 
-class RequestContext[+A](val request: EnrichedRequest[A], val messages : Messages, val user: Option[User] = None) extends WrappedRequest(request = request) {
+class RequestContext[+A](val request: EnrichedRequest[A], val messages : Messages, val user: User) extends WrappedRequest(request = request) {
 
   implicit val requestHeader : RequestHeader = request
 

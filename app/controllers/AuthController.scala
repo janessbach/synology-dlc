@@ -14,11 +14,11 @@ import modules.core.result.ResultUtils._
 class AuthController @Inject()(authService: AuthService)
                               (implicit exec: ExecutionContext) extends CoreController {
 
-  def index : Action[AnyContent] = BaseAction { implicit context =>
+  def index : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
     Future.successful(Ok(views.html.login("Login To Synology DLC")))
   }
 
-  def login : Action[AnyContent] = BaseAction { implicit context =>
+  def login : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
     import modules.auth.models.UserForm._
     formMapping.bindFromRequest.fold(
       formWithErrors => {

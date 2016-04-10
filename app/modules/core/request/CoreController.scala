@@ -12,9 +12,12 @@ class CoreController extends Controller {
   @Inject
   var actionBuilder: CoreAction = null
 
-  def BaseAction[A](delegate: RequestContext[AnyContent] => Future[Result]) = actionBuilder(parse.anyContent)(delegate)
+  def BaseAction(delegate: RequestContext[AnyContent] => Future[Result]) = actionBuilder(parse.anyContent)(userCheck = true)(delegate)
 
-  def BaseAction[A](bp: BodyParser[A])(delegate: RequestContext[A] => Future[Result]) = actionBuilder(bp)(delegate)
+  def BaseAction[A](bp: BodyParser[A])(delegate: RequestContext[A] => Future[Result]) = actionBuilder(bp)(userCheck = true)(delegate)
 
+  def BaseAction(userCheck : Boolean)(delegate: RequestContext[AnyContent] => Future[Result]) = actionBuilder(parse.anyContent)(userCheck)(delegate)
+
+  def BaseAction[A](bp: BodyParser[A], userCheck : Boolean)(delegate: RequestContext[A] => Future[Result]) = actionBuilder(bp)(userCheck)(delegate)
 }
 
