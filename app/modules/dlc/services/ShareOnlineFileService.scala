@@ -8,6 +8,17 @@ import javax.inject.Inject
 
 import play.api.Logger
 
+/**
+  * This class uses the Share-online Linkcheck API to check the availability of a download link.
+  * To check it a post request to http://api.share-online.biz/linkcheck.php with the link is made.
+  *
+  * The Linkcheck API response is in the following format:
+  * $_UPLOAD_ID;$_STATUS;$_FILENAME;$_FILSIZE
+  *   - $_UPLOAD_ID:  Upload-ID from checked link
+  *   - $_STATUS:     "OK", "DELETED", "NOT FOUND"
+  *   - $_FILESIZE:   Filesize in bytes
+  */
+
 class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   private val logger = Logger(classOf[ShareOnlineFileService])
@@ -23,8 +34,6 @@ class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: Execut
 
     response.map { response =>
       val result = response.body.split(";")
-
-      // $_UPLOAD_ID;$_STATUS;$_FILENAME;$_FILSIZE
 
       result.length match {
         case 4 => result(1) == "OK"
