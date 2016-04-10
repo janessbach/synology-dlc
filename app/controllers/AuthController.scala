@@ -30,6 +30,6 @@ class AuthController @Inject()(authService: AuthService)
   }
 
   private def login[A](user : User)(implicit context: RequestContext[A]) : Result =
-    user.addToSession(Redirect("")).successFlashing(s"Hallo ${user.username}")
+    user.addToSession(Redirect("/")).successFlashing(s"Hallo ${user.username}")
 
 }
