@@ -1,8 +1,8 @@
 package modules.synology.client
 
 import com.google.inject.Inject
-import modules.synology.client.config.ClientApiConfiguration
-import modules.synology.client.models.{LogoutStatus, LoginStatus}
+import modules.auth.models.{LoginStatus, LogoutStatus}
+import play.api.Configuration
 import play.api.libs.json._
 import play.api.libs.ws.WSClient
 
@@ -44,4 +44,5 @@ class ClientApi @Inject() (wsClient : WSClient,
     }
 }
 
+class ClientApiConfiguration @Inject()(config: Configuration)
 

@@ -2,60 +2,31 @@ package controllers
 
 import javax.inject._
 
-import modules.core.{RequestContext, CoreController}
-import modules.synology.client.ClientApi
-import modules.synology.client.models.LoginStatus
-import play.api.libs.json.Json
-import play.api.mvc.Result
+import modules.auth.models.User
+import modules.auth.services.AuthService
+import modules.core.request.{CoreController, RequestContext}
+import play.api.mvc.{Action, AnyContent, Result}
 
-import scala.concurrent.{Future, ExecutionContext}
-
-import play.api.data._
-import play.api.data.Forms._
-
-case class User(username : String, loginStatus: LoginStatus)
-object User {
-  implicit val reads = Json.reads[User]
-  implicit val writes = Json.writes[User]
-}
-
-case class UserData(name: String, password: String)
-
-object UserData {
-
-  val Username = "username"
-  val Password = "password"
-
-  val formMapping = Form(
-    mapping(
-      Username -> text,
-      Password -> text
-    )(UserData.apply)(UserData.unapply)
-  )
-}
+import scala.concurrent.{ExecutionContext, Future}
+import modules.core.result.ResultUtils._
 
 @Singleton
-class AuthController @Inject()(client : ClientApi) (implicit exec: ExecutionContext) extends CoreController {
+class AuthController @Inject()(authService: AuthService)
+                              (implicit exec: ExecutionContext) extends CoreController {
 
-  def login = BaseAction { implicit context =>
-    import UserData._
+  def index : Action[AnyContent] = BaseAction { implicit context =>
+    Future.successful(Ok(views.html.login("Login To Synology DLC")))
+  }
+
+  def login : Action[AnyContent] = BaseAction { implicit context =>
+    import modules.auth.models.UserForm._
     formMapping.bindFromRequest.fold(
-      formWithErrors => { Future.successful(Redirect("")) },
-      userData => addToSession(userData)
+      formWithErrors => { Future.successful(BadRequest(views.html.login("Login To Synology DLC"), Some(formWithErrors))) },
+      userData => authService.login(userData).map(user => login(user))
     )
   }
 
-  private def addToSession[A](userData: UserData)(implicit context: RequestContext[A]) : Future[Result] = {
-    import Authenticate._
-    client.login(userData.name, userData.password).map {
-      case l @ LoginStatus(sessionId, true) => Redirect("").addingToSession(UserSessionKey -> Json.stringify(Json.toJson(User(userData.name, l))))(context.requestHeader)
-      case _ => Redirect("")
-    }
-  }
+  private def login[A](user : User)(implicit context: RequestContext[A]) : Result =
+    user.addToSession(Redirect("")).successFlashing(s"Hallo ${user.username}")
 
 }
-
-object Authenticate {
-  val UserSessionKey = "user.session"
-}
-

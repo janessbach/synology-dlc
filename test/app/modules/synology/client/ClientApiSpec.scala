@@ -2,8 +2,7 @@ package app.modules.synology.client
 
 import mixins.NoApplication
 import mockws.MockWS
-import modules.synology.client.ClientApi
-import modules.synology.client.config.ClientApiConfiguration
+import modules.synology.client.{ClientApi, ClientApiConfiguration}
 import play.api.mvc.{Action, Results}
 
 class ClientApiSpec extends NoApplication {

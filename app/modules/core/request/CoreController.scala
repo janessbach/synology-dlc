@@ -1,7 +1,6 @@
-package modules.core
+package modules.core.request
 
-import javax.inject.Inject
-
+import com.google.inject.Inject
 import play.api.mvc._
 
 import scala.concurrent.Future

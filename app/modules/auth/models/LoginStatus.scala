@@ -1,4 +1,4 @@
-package modules.synology.client.models
+package modules.auth.models
 
 import play.api.libs.json.Json
 

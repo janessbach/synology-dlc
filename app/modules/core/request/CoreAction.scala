@@ -1,13 +1,11 @@
-package modules.core
+package modules.core.request
 
-import javax.inject.Inject
-
+import com.google.inject.Inject
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc._
+import play.api.mvc.{Action, BodyParser, Request, Result}
 
-import scala.async.Async.{async, await}
 import scala.concurrent.{ExecutionContext, Future}
-
+import scala.async.Async.{async, await}
 
 class CoreAction @Inject()(val messagesApi: MessagesApi)(implicit ec: ExecutionContext) extends I18nSupport {
 

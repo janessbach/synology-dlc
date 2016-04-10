@@ -1,5 +1,6 @@
 package modules.core
 
+import modules.core.request.RequestContext
 import play.api.i18n.Messages
 
 object TemplateMixin {
