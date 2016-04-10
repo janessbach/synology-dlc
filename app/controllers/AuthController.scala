@@ -21,7 +21,10 @@ class AuthController @Inject()(authService: AuthService)
   def login : Action[AnyContent] = BaseAction { implicit context =>
     import modules.auth.models.UserForm._
     formMapping.bindFromRequest.fold(
-      formWithErrors => { Future.successful(BadRequest(views.html.login("Login To Synology DLC"), Some(formWithErrors))) },
+      formWithErrors => {
+        val html = views.html.login("Login To Synology DLC", Some(formWithErrors))
+        Future.successful(BadRequest(html))
+      },
       userData => authService.login(userData).map(user => login(user))
     )
   }
