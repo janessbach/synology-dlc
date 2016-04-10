@@ -9,30 +9,30 @@ import play.api.libs.ws.WSClient
 import scala.concurrent.{ExecutionContext, Future}
 
 trait RemoteFileService {
+
+  def urlStart: String
   def checkAvailability(file: RemoteFile): Future[Boolean]
+
 }
 
-class RemoteFileServiceFactory @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) {
+class RemoteFileServiceFactory @Inject() (wsClient : WSClient,
+                                          fileService: java.util.Set[RemoteFileService]) (implicit ec: ExecutionContext) {
 
   private val logger = Logger(classOf[RemoteFileServiceFactory])
 
-  def checkAvailability(file: RemoteFile): Future[Boolean] = {
-    val fileService =  mapping.find { case(key,value) => file.url.startsWith(key) }.map(_._2)
+  private val defaultFileService = new DefaultFileService(wsClient)
 
-    fileService.map { service =>
-      service.checkAvailability(file)
-    } getOrElse {
-      logger.error(s"unsupported file hoster for url: ${file.url}")
-      Future.failed(new UnsupportedFileHosterException)
+  private lazy val fileServices: Set[RemoteFileService] = {
+    import scala.collection.JavaConversions._
+    fileService.toSet
+  }
+
+  def checkAvailability(file: RemoteFile): Future[Boolean] = {
+    val service = fileServices.find(service => file.url.startsWith(service.urlStart))
+
+    service match {
+      case Some(currentService) => currentService.checkAvailability(file)
+      case _ => defaultFileService.checkAvailability(file)
     }
   }
-
-  def mapping = {
-    Map(
-      "http://www.share-online.biz" -> new ShareOnlineFileService(wsClient),
-      "http://ul.to" -> new UploadedToFileService(wsClient)
-    )
-  }
 }
-
-class UnsupportedFileHosterException extends Exception

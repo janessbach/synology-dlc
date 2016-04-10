@@ -14,6 +14,8 @@ class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: Execut
 
   private val LinkCheckUrl = "http://api.share-online.biz/linkcheck.php"
 
+  override def urlStart: String = "http://www.share-online.biz"
+
   override def checkAvailability(file: RemoteFile): Future[Boolean] = {
     val response: Future[WSResponse] = wsClient.url(LinkCheckUrl)
       .withHeaders("content-type" -> "application/x-www-form-urlencoded")

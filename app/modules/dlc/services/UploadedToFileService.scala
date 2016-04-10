@@ -1,20 +1,11 @@
 package modules.dlc.services
 
+import play.api.libs.ws.WSClient
 import javax.inject.Inject
+import scala.concurrent.ExecutionContext
 
-import modules.dlc.models.RemoteFile
-import play.api.libs.ws.{WSClient, WSResponse}
+class UploadedToFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends DefaultFileService(wsClient) {
 
-import scala.concurrent.{ExecutionContext, Future}
-
-class UploadedToFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
-
-  override def checkAvailability(file: RemoteFile): Future[Boolean] = {
-    val response: Future[WSResponse] = wsClient.url(file.url).get()
-
-    response.map { response =>
-      response.status == 200
-    }
-  }
+  override def urlStart: String = "http://ul.to"
 
 }
