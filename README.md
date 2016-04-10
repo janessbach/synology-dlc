@@ -10,7 +10,7 @@ The app can easily been deployed right to your nas system at home.
 Features and release plans
 ====================================================================
 
-The idea is build a web plattform for synology nas systems in a dashboard oriented way.
+The idea is to build a web plattform for synology nas systems in a dashboard oriented way.
 Every page and slot handles a certain problem for you. The first dashboard items will be:
 
 Version 1.0.0 - 31.04.16
@@ -45,7 +45,7 @@ Tech stack
 ======================
 
 The idea of this project is also to use modern concepts in the area of delpoyment, testing and scalability.
-Therefore following components were choosen:
+Therefore following components were chosen:
 
 - Play Framework 2.5 with Scala and Akka Flow Websockets
 - Modern dashboard theme AdminLTE brought to us by [almasaeed2010](https://github.com/almasaeed2010/AdminLTE)    
