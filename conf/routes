@@ -4,6 +4,7 @@
 
 GET     /                           controllers.HomeController.index
 GET     /downloads                  controllers.HomeController.downloads
+GET     /settings                   controllers.HomeController.settings
 
 POST     /api/decrypt               controllers.ApiController.dlcDecrypt
 

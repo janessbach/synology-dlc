@@ -11,7 +11,11 @@ class HomeController @Inject() extends Controller {
   }
 
   def downloads = Action {
-    Ok(views.html.download.downloads())
+    Ok(views.html.dlc.downloads())
+  }
+
+  def settings = Action {
+    Ok(views.html.settings())
   }
 
 }

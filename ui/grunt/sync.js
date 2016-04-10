@@ -51,6 +51,14 @@ module.exports = function (grunt) {
                         'flat/blue.png'
                     ],
                     dest: 'public/css'
+                },
+                {
+                    cwd: global.dlc.INPUTMASK_ASSETS,
+                    src: [
+                        'jquery.inputmask.js',
+                        'jquery.inputmask.extensions.js'
+                    ],
+                    dest: 'public/js'
                 }
                 
             ]
