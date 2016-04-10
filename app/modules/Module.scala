@@ -2,7 +2,7 @@ package modules
 
 import com.google.inject.AbstractModule
 import com.google.inject.multibindings.Multibinder
-import modules.dlc.services.{DefaultFileService, RemoteFileService, ShareOnlineFileService, UploadedToFileService}
+import modules.dlc.services.{ RemoteFileService, ShareOnlineFileService }
 
 class Module extends AbstractModule {
 
@@ -10,7 +10,6 @@ class Module extends AbstractModule {
 
     val remoteFileHandlers = Multibinder.newSetBinder(binder, classOf[RemoteFileService])
     remoteFileHandlers.addBinding().to(classOf[ShareOnlineFileService])
-    remoteFileHandlers.addBinding().to(classOf[UploadedToFileService])
 
   }
 
