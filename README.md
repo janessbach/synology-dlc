@@ -1,7 +1,7 @@
 A modern web plugin for the Synology Disk Station
 =================================================
 
-![Build Status](https://travis-ci.org/janessbach/synology-dlc.svg?branch=master), current version: 1.0.0
+![Build Status](https://travis-ci.org/janessbach/synology-dlc.svg?branch=master) (master)
 
 This is a open source dashboard web app for synology nas systems.
 At current state it handles decryption of dlc containers and realtime
