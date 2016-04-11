@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/janessbach/synology-dlc.svg?branch=master)
+
 A modern web plugin for the Synology Disk Station
 =================================================
 
@@ -60,13 +62,13 @@ The tech cloud and development team
 ===================================
 <pre>
 ,--. 
-     )
+     ) 
   _'-. _ Synology DSM, Download Station, DSM, DLC
- (    ) ),--. Play Framework, Scala, Async, Akka
-             )-._ Sbt, Grunt
+ (    ) ),--. Play Framework, Scala, Async, Akka Flow Websockets
+             )-._ Travis CI, Sbt, Grunt
 _________________) Socket.io, Scalatest, Mockito, Jasmine
 </pre>
 
-*[@janessbach] loves scala.
+*[@janessbach]
 
-*[@elisabaum] loves scala, too.
+*[@elisabaum]
