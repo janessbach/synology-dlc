@@ -1,21 +1,20 @@
 language: scala
-
 scala:
-  - 2.11.7
-
+  - "2.11.7"
 jdk:
   - oraclejdk8
-
-env:
-  - TRAVIS_NODE_VERSION="0.12"
-  - TRAVIS_NODE_VERSION="4"
-  
 cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
-
+install:
+  - "rm -rf ~/.nvm"
+  - "curl -L https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh"
+  - "source ~/.nvm/nvm.sh"
+  - "nvm install 0.10"
+  - "nvm use 0.10"
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
+  - "npm install"
+  - sbt test
   - find $HOME/.sbt -name "*.lock" | xargs rm
   - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
