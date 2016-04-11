@@ -1,17 +1,14 @@
 package controllers
 
 import javax.inject._
-import play.api.mvc._
+
+import modules.core.request.CoreController
+
+import scala.concurrent.Future
 
 @Singleton
-class HomeController @Inject() extends Controller {
+class HomeController @Inject() extends CoreController {
 
-  def index = Action {
-    Ok(views.html.login("Login To Synology DLC"))
-  }
-
-  def downloads = Action {
-    Ok(views.html.download.downloads())
-  }
+  def downloads = BaseAction { implicit context => Future.successful(Ok(views.html.download.downloads())) }
 
 }
