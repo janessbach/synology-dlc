@@ -1,0 +1,47 @@
+@import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
+
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @includeHead("Welcome to Synology DLC")
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            @includeHeader()
+            @includeNavigation()
+
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>@title</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    @content
+                </section>
+            </div>
+
+        </div>
+
+
+        <script src="@routes.Assets.versioned("js/jQuery-2.2.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/jquery.inputmask.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/jquery.inputmask.extensions.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/icheck.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/app.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/checkbox-toggle.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/download-handler.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/init-downloads.js")" type="text/javascript"></script>
+
+        <script>
+                $("[data-mask]").inputmask();
+        </script>
+
+    </body>
+</html>

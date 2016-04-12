@@ -4,13 +4,19 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {
-                    cwd: global.dlc.UI_ASSETS,
-                    src: ['**/*.min.js'],
+                    cwd: global.dlc.CORE_ASSETS,
+                    src: [
+                        '**/*.js',
+                        '**/*.css'
+                    ],
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.UI_ASSETS,
-                    src: ['**/*.min.css'],
+                    cwd: global.dlc.DLC_ASSETS,
+                    src: [
+                        '**/*.js',
+                        '**/*.css'
+                    ],
                     dest: 'public/'
                 },
                 {
@@ -51,6 +57,14 @@ module.exports = function (grunt) {
                         'flat/blue.png'
                     ],
                     dest: 'public/css'
+                },
+                {
+                    cwd: global.dlc.INPUTMASK_ASSETS,
+                    src: [
+                        'jquery.inputmask.js',
+                        'jquery.inputmask.extensions.js'
+                    ],
+                    dest: 'public/js'
                 }
                 
             ]
