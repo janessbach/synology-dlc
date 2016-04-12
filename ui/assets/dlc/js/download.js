@@ -12,7 +12,7 @@
         _opts = $.extend(_opts, opts);
     }
 
-    DownloadHandler.prototype.decryptFile = function (formData) {
+    DownloadHandler.prototype.decryptFile = function (formData, succesFn) {
         $.ajax({
             url: _opts.uploadUrl,
             type: 'POST',
@@ -22,28 +22,11 @@
             processData: false,
             dataType: 'json',
             success: function (data) {
-                parse(data);
+                succesFn(data);
             }
         });
     };
     
-    DownloadHandler.prototype.parse = function (data) {
-        var self = this;
-        data.forEach(function (element) {
-            self.createFileEntry(element);
-        });    
-    };
-    
-    DownloadHandler.prototype.createFileEntry = function () {
-        var tableRow = $('<tr/>')
-            .append('<td><input type="checkbox" class="icheckbox_flat-blue"></td>')
-            .append('<td><span class="label label-warning">Checking</span></td>')
-            .append('<td>' + element.name + '</td>')
-            .append('<td>' + element.url + '</td>');
-
-        $('tbody').append(tableRow);
-    };
-
     global.DownloadHandler = DownloadHandler;
     
 })(this, this.jQuery);
