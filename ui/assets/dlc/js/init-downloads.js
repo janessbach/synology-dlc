@@ -18,7 +18,7 @@
     }
     
     function initDownloadHandler() {
-        var downloadHandler = DownloadHandler();
+        var downloadHandler = new global.DownloadHandler();
         
         $('.dlcDecrypt').on('click', function () {
             var formData = new FormData($('.dlcFileForm')[0]);
