@@ -1,4 +1,4 @@
-package modules.core
+package modules.core.request
 
 import play.api.mvc.RequestHeader
 

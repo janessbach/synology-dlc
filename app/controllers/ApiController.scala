@@ -1,9 +1,11 @@
 package controllers
 
 import javax.inject._
-import modules.core.CoreController
+
+import modules.core.request.CoreController
 import modules.dlc.services.DlcExtractorService
 import play.api.libs.json.Json
+
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
@@ -17,6 +19,8 @@ class ApiController @Inject()(dlcExtractorService: DlcExtractorService)
       Future.successful(Ok(Json.toJson(dlcExtractorService.extract(item.ref.file))))
     } getOrElse Future.successful(BadRequest)
   }
+
+  def available = BaseAction { implicit context => Future.successful(Ok("")) }
 
 }
 
