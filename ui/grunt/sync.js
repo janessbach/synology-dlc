@@ -4,13 +4,19 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {
-                    cwd: global.dlc.UI_ASSETS,
-                    src: ['**/*.js'],
+                    cwd: global.dlc.CORE_ASSETS,
+                    src: [
+                        '**/*.js',
+                        '**/*.css'
+                    ],
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.UI_ASSETS,
-                    src: ['**/*.css'],
+                    cwd: global.dlc.DOWNLOADS_ASSETS,
+                    src: [
+                        '**/*.js',
+                        '**/*.css'
+                    ],
                     dest: 'public/'
                 },
                 {

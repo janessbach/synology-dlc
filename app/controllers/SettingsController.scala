@@ -8,5 +8,5 @@ import javax.inject.{Inject, Singleton}
 class SettingsController @Inject() extends CoreController {
 
   def settings = BaseAction { implicit context => Future.successful(Ok(views.html.core.settings())) }
-  
+
 }
