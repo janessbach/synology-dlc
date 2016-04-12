@@ -11,7 +11,7 @@ class HomeController @Inject() extends CoreController {
 
   def downloads = BaseAction { implicit context => Future.successful(Ok(views.html.dlc.downloads())) }
 
-  def dashboard = BaseAction { implicit context => Future.successful(Ok(views.html.core.dashboard())) }
+  def dashboard = BaseAction { implicit context => Future.successful(Ok(views.html.platform.dashboard())) }
 
 
 }

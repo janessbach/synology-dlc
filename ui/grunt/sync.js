@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.DOWNLOADS_ASSETS,
+                    cwd: global.dlc.DLC_ASSETS,
                     src: [
                         '**/*.js',
                         '**/*.css'

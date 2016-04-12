@@ -1,4 +1,4 @@
-@import views.html.core.includes.{ includeHead, includeHeader, includeNavigation }
+@import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
 
 @(title: String)(content: Html)
 
@@ -35,7 +35,9 @@
         <script src="@routes.Assets.versioned("js/jquery.inputmask.extensions.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("js/icheck.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("js/app.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/checkbox-toggle.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("js/downloads.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("js/init-downloads.js")" type="text/javascript"></script>
 
         <script>
                 $("[data-mask]").inputmask();
