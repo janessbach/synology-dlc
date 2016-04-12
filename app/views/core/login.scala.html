@@ -1,23 +1,14 @@
+@import controllers.routes.AuthController
+
 @import modules.auth.models.UserForm
+@import views.html.core.includes.includeHead
+
 @(title: String, userForm: Option[Form[UserForm]] = None)
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>@title</title>
-
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-        <link rel="stylesheet" href="@routes.Assets.versioned("css/bootstrap.min.css")">
-        <link rel="stylesheet" href="@routes.Assets.versioned("css/font-awesome.min.css")">
-        <link rel="stylesheet" href="@routes.Assets.versioned("css/ionicons.min.css")">
-        <link rel="stylesheet" href="@routes.Assets.versioned("css/AdminLTE.min.css")">
-        <link rel="stylesheet" href="@routes.Assets.versioned("css/square/blue.css")">
-
-        <script src="@routes.Assets.versioned("js/html5shiv.min.js")" type="text/javascript"></script>
-        <script src="@routes.Assets.versioned("js/respond.min.js")" type="text/javascript"></script>
+        @includeHead(title)
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -27,7 +18,7 @@
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="/login" method="post">
+                <form action="@AuthController.login" method="post">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="username" placeholder="Username">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -49,8 +40,6 @@
                         </div>
                     </div>
                 </form>
-                <a href="#">I forgot my password</a><br>
-                <a href="#">Register</a>
             </div>
         </div>
 

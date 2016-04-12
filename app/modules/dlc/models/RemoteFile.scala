@@ -2,7 +2,7 @@ package modules.dlc.models
 
 import play.api.libs.json.Json
 
-case class RemoteFile(name: String, url: String, available: Boolean = true)
+case class RemoteFile(name: String, url: String)
 
 object RemoteFile {
 
