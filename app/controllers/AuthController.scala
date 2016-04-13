@@ -21,8 +21,7 @@ class AuthController @Inject()(authService: AuthService)
   }
 
   def login : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
-    import UserForm._
-    formMapping.bindFromRequest.fold(
+    UserForm.formMapping.bindFromRequest.fold(
       formWithErrors => {
         val html = views.html.platform.login("Login To Synology DLC", Some(formWithErrors))
         Future.successful(BadRequest(html))
