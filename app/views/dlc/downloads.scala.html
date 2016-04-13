@@ -1,11 +1,13 @@
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
+
 @import views.html.platform.main
 @import views.html.dlc.dlcUpload
 @import views.html.dlc.downloadFilesOverview
-@import play.api.i18n.Messages
 
-@()(implicit messages: Messages)
+@()(implicit context: RequestContext[Any])
 
-@main(messages("downloads.title")) {
+@main(Messages("downloads.title")) {
     @dlcUpload()
     @downloadFilesOverview()
 }

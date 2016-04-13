@@ -1,10 +1,11 @@
-@import play.api.i18n.Messages
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
 
-@(title: String)(implicit messages: Messages)
+@(title: String)(implicit context: RequestContext[Any])
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>@messages("application.title.browserTab", title)</title>
+<title>@Messages("application.title.browserTab", title)</title>
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 

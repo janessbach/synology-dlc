@@ -1,7 +1,8 @@
-@import play.api.i18n.Messages
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
 
-@()(implicit messages: Messages)
+@()(implicit context: RequestContext[Any])
 
-@main(messages("dashboard.title")) {
+@main(Messages("dashboard.title")) {
 
 }

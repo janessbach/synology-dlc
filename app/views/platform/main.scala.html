@@ -1,7 +1,8 @@
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
 @import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
-@import play.api.i18n.Messages
 
-@(title: String)(content: Html)(implicit messages: Messages)
+@(title: String)(content: Html)(implicit context: RequestContext[Any])
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,29 +1,31 @@
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
 @import views.html.platform.includes.includeHead
 
-@(userForm: Option[Form[UserForm]] = None)
+@(userForm: Option[Form[UserForm]] = None)(implicit context: RequestContext[Any])
 
 <!DOCTYPE html>
 <html>
     <head>
-        @includeHead(messages("login.title"))
+        @includeHead(Messages("login.title"))
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
-            <div class="login-logo">@Html(messages("application.title"))</div>
+            <div class="login-logo">@Html(Messages("application.title"))</div>
             <div class="login-box-body">
-                <p class="login-box-msg">@messages("login.description")</p>
+                <p class="login-box-msg">@Messages("login.description")</p>
                 <form action="@controllers.routes.AuthController.login" method="post">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="username" placeholder="@messages("login.username")">
+                        <input type="text" class="form-control" name="username" placeholder="@Messages("login.username")">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" name="password" placeholder="@messages("login.password")">
+                        <input type="password" class="form-control" name="password" placeholder="@Messages("login.password")">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 pull-right">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">@messages("login.signIn")</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">@Messages("login.signIn")</button>
                         </div>
                     </div>
                 </form>

@@ -1,9 +1,12 @@
-@()
+@import modules.core.controllers.RequestContext
+@import modules.core.TemplateMixin
+
+@()(implicit context: RequestContext[Any])
 
 <header class="main-header">
     <a href="" class="logo">
-        <span class="logo-mini">@Html(messages("application.title.short"))</span>
-        <span class="logo-lg">@Html(messages("application.title"))</span>
+        <span class="logo-mini">@Html(Messages("application.title.short"))</span>
+        <span class="logo-lg">@Html(Messages("application.title"))</span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -128,7 +131,7 @@
                     </ul>
                 </li>
                 <a href="@controllers.routes.AuthController.logout()" class="navbar-link">
-                    <i class="fa fa-sign-out"></i>@messages("application.logout")
+                    <i class="fa fa-sign-out"></i>@Messages("application.logout")
                 </a>
             </ul>
         </div>
