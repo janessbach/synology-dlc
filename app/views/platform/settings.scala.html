@@ -1,6 +1,8 @@
-@()
+@import play.api.i18n.Messages
 
-@main("Settings") {
+@()(implicit messages: Messages)
+
+@main(messages("settings.title")) {
 
     <div class="row">
         <div class="col-md-12">

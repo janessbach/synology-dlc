@@ -1,8 +1,10 @@
-@(title: String)
+@import play.api.i18n.Messages
+
+@(title: String)(implicit messages: Messages)
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>@title</title>
+<title>@messages("application.title.browserTab", title)</title>
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 

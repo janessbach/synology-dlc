@@ -1,13 +1,12 @@
 package controllers
 
+import modules.core.request.CoreController
+import play.api.i18n.{I18nSupport, MessagesApi}
+import scala.concurrent.Future
 import javax.inject._
 
-import modules.core.request.CoreController
-
-import scala.concurrent.Future
-
 @Singleton
-class HomeController @Inject() extends CoreController {
+class HomeController @Inject() (val messagesApi: MessagesApi) extends CoreController with I18nSupport {
 
   def downloads = BaseAction { implicit context => Future.successful(Ok(views.html.dlc.downloads())) }
 

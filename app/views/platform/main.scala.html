@@ -1,11 +1,12 @@
 @import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
+@import play.api.i18n.Messages
 
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit messages: Messages)
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @includeHead("Welcome to Synology DLC")
+        @includeHead(title)
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">

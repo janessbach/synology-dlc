@@ -1,9 +1,11 @@
-@()
+@import play.api.i18n.Messages
+
+@()(implicit messages: Messages)
 
 <div class="col-md-6">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Container upload</h3>
+            <h3 class="box-title">@messages("downloads.dlcFile.upload.title")</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -12,14 +14,14 @@
         <form class="dlcFileForm" enctype="multipart/form-data">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dlc-file">DLC-File</label>
+                    <label for="dlc-file">@messages("downloads.dlcFile")</label>
                     <input type="file" name="dlc-file">
 
-                    <p class="help-block">Upload the dlc file here.</p>
+                    <p class="help-block">@messages("downloads.dlcFile.upload.description")</p>
                 </div>
             </div>
             <div class="box-footer">
-                <button type="button" class="btn btn-primary pull-right dlcDecrypt">Decrypt</button>
+                <button type="button" class="btn btn-primary pull-right dlcDecrypt">@messages("downloads.dlcFile.upload")</button>
             </div>
         </form>
     </div>

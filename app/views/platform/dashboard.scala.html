@@ -1,5 +1,7 @@
-@()
+@import play.api.i18n.Messages
 
-@main("Dashboard") {
+@()(implicit messages: Messages)
+
+@main(messages("dashboard.title")) {
 
 }
