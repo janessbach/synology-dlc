@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {
-                    cwd: global.dlc.CORE_ASSETS,
+                    cwd: global.dlc.PLATFORM_ASSETS,
                     src: [
                         '**/*.css'
                     ],

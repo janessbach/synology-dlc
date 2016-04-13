@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 
         extra: {
             src: [
-                global.dlc.CORE_ASSETS + 'js/*.js',
+                global.dlc.PLATFORM_ASSETS + 'js/*.js',
                 global.dlc.DLC_ASSETS + 'js/*.js'
             ],
             dest: 'public/js/extra.js'

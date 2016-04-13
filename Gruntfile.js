@@ -3,7 +3,7 @@ module.exports = function (grunt) {
 
     global.dlc = {};
     global.dlc.CONF = 'conf/';
-    global.dlc.CORE_ASSETS = 'ui/assets/core/';
+    global.dlc.PLATFORM_ASSETS = 'ui/assets/platform/';
     global.dlc.DLC_ASSETS = 'ui/assets/dlc/';
 
     global.libs = {};
