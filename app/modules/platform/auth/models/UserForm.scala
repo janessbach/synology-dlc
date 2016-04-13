@@ -1,7 +1,7 @@
-package modules.auth.models
+package modules.platform.auth.models
 
-import play.api.data._
 import play.api.data.Forms._
+import play.api.data._
 
 case class UserForm(name: String, password: String)
 

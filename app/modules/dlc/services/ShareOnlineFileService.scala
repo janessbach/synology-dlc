@@ -6,6 +6,7 @@ import play.api.libs.ws.{WSClient, WSResponse}
 import scala.concurrent.{ExecutionContext, Future}
 import javax.inject.Inject
 
+import modules.core.network.WebService
 import play.api.Logger
 
 /**
@@ -18,8 +19,7 @@ import play.api.Logger
   *   - $_STATUS:     "OK", "DELETED", "NOT FOUND"
   *   - $_FILESIZE:   Filesize in bytes
   */
-
-class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
+class ShareOnlineFileService @Inject()(wsClient : WebService)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   private val logger = Logger(classOf[ShareOnlineFileService])
 

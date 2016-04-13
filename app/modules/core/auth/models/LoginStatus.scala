@@ -1,4 +1,4 @@
-package modules.auth.models
+package modules.core.auth.models
 
 import play.api.libs.json.Json
 

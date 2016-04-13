@@ -1,7 +1,7 @@
 package modules.synology.client
 
 import com.google.inject.Inject
-import modules.auth.models.{LoginStatus, LogoutStatus}
+import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import play.api.Configuration
 import play.api.libs.json._
 import play.api.libs.ws.WSClient

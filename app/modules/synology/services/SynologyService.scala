@@ -1,7 +1,7 @@
 package modules.synology.services
 
 import com.google.inject.Inject
-import modules.auth.models.LoginStatus
+import modules.core.auth.models.LoginStatus
 import modules.synology.client.ClientApi
 
 import scala.concurrent.Future
