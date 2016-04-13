@@ -6,7 +6,6 @@ module.exports = function (grunt) {
                 {
                     cwd: global.dlc.CORE_ASSETS,
                     src: [
-                        '**/*.js',
                         '**/*.css'
                     ],
                     dest: 'public/'
@@ -14,42 +13,29 @@ module.exports = function (grunt) {
                 {
                     cwd: global.dlc.DLC_ASSETS,
                     src: [
-                        '**/*.js',
                         '**/*.css'
                     ],
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.BOOTSTRAP_ASSETS,
+                    cwd: global.libs.BOOTSTRAP_ASSETS,
                     src: [
                         'css/*.min.css',
-                        'js/*.min.js',
                         'fonts/**'
                     ],
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.ADMINLTE_ASSETS,
+                    cwd: global.libs.ADMINLTE_ASSETS,
                     src: [
                         'css/*.min.css',
                         'css/**/skin-blue.min.css',
-                        'js/*.min.js',
                         'img/**'
                     ],
                     dest: 'public/'
                 },
                 {
-                    cwd: global.dlc.JQUERY_ASSETS,
-                    src: ['**/*.min.js'],
-                    dest: 'public/js'
-                },
-                {
-                    cwd: global.dlc.ICHECK_ASSETS,
-                    src: ['**/*.min.js'],
-                    dest: 'public/js'
-                },
-                {
-                    cwd: global.dlc.ICHECK_ASSETS,
+                    cwd: global.libs.ICHECK_ASSETS,
                     src: [
                         'square/blue.css',
                         'square/blue.png',
@@ -57,14 +43,6 @@ module.exports = function (grunt) {
                         'flat/blue.png'
                     ],
                     dest: 'public/css'
-                },
-                {
-                    cwd: global.dlc.INPUTMASK_ASSETS,
-                    src: [
-                        'jquery.inputmask.js',
-                        'jquery.inputmask.extensions.js'
-                    ],
-                    dest: 'public/js'
                 }
                 
             ]
