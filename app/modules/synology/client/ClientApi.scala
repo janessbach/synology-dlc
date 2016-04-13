@@ -2,14 +2,14 @@ package modules.synology.client
 
 import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
-import modules.core.network.WebService
 import play.api.Configuration
 import play.api.libs.json._
+import play.api.libs.ws.WSClient
 import play.utils.UriEncoding
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ClientApi @Inject() (wsClient : WebService,
+class ClientApi @Inject() (wsClient : WSClient,
                            config: ClientApiConfiguration)(implicit ec: ExecutionContext) {
 
   private val ApiPrefix = "http://192.168.1.2:5000"

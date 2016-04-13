@@ -2,12 +2,12 @@ package modules.dlc.services
 
 import javax.inject.Inject
 
-import modules.core.network.WebService
 import modules.dlc.models.RemoteFile
+import play.api.libs.ws.WSClient
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class DefaultFileService @Inject() (wsClient : WebService)(implicit ec: ExecutionContext) extends RemoteFileService {
+class DefaultFileService @Inject()(wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   override def urlStart: String = ""
 
