@@ -1,29 +1,23 @@
-@import controllers.routes.HomeController
-@import controllers.routes.SettingsController
-@import play.api.i18n.Messages
-
-@()(implicit messages: Messages)
-
+@()
 <aside class="main-sidebar">
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="@HomeController.dashboard()">
-                    <i class="fa fa-dashboard"></i><span>@messages("dashboard.title")</span>
+                <a href="@controllers.routes.HomeController.dashboard()">
+                    <i class="fa fa-dashboard"></i> <span>@messages("dashboard.title")</span>
                 </a>
             </li>
             <li>
-                <a href="@HomeController.downloads()">
+                <a href="@controllers.routes.HomeController.downloads()">
                     <i class="fa fa-download"></i><span>@messages("downloads.title")</span>
                 </a>
             </li>
             <li>
-                <a href="@SettingsController.settings()">
+                <a href="@controllers.routes.SettingsController.settings()">
                     <i class="fa fa-gears"></i><span>@messages("settings.title")</span>
                 </a>
             </li>
         </ul>
-
     </section>
 </aside>

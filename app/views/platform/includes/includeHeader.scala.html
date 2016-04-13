@@ -1,15 +1,10 @@
-@import controllers.routes.AuthController
-@import play.api.i18n.Messages
-
-@()(implicit messages: Messages)
+@()
 
 <header class="main-header">
-
     <a href="" class="logo">
         <span class="logo-mini">@Html(messages("application.title.short"))</span>
         <span class="logo-lg">@Html(messages("application.title"))</span>
     </a>
-
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
@@ -132,7 +127,7 @@
                         </li>
                     </ul>
                 </li>
-                <a href="@AuthController.logout()" class="navbar-link">
+                <a href="@controllers.routes.AuthController.logout()" class="navbar-link">
                     <i class="fa fa-sign-out"></i>@messages("application.logout")
                 </a>
             </ul>

@@ -29,6 +29,6 @@ gruntSettings
 
 gruntPath := "node_modules/grunt-cli/bin/grunt"
 
-gruntTasks in Compile := Seq("bower-install-simple", "sync")
+gruntTasks in Compile := Seq("bower-install-simple", "sync", "concat")
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

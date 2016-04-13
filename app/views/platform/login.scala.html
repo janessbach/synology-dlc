@@ -1,9 +1,6 @@
-@import controllers.routes.AuthController
-@import modules.auth.models.UserForm
-@import play.api.i18n.Messages
 @import views.html.platform.includes.includeHead
 
-@(userForm: Option[Form[UserForm]] = None)(implicit messages: Messages)
+@(userForm: Option[Form[UserForm]] = None)
 
 <!DOCTYPE html>
 <html>
@@ -15,8 +12,7 @@
             <div class="login-logo">@Html(messages("application.title"))</div>
             <div class="login-box-body">
                 <p class="login-box-msg">@messages("login.description")</p>
-
-                <form action="@AuthController.login" method="post">
+                <form action="@controllers.routes.AuthController.login" method="post">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="username" placeholder="@messages("login.username")">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>

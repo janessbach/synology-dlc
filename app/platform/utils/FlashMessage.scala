@@ -1,6 +1,6 @@
-package modules.core.result
+package platform.utils
 
-import modules.core.request.RequestContext
+import modules.core.controllers.RequestContext
 import play.api.mvc.Result
 
 abstract class LogLevel(sessionKey : String)
