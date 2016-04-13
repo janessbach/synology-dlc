@@ -19,7 +19,9 @@ class CoreController(implicit ec: ExecutionContext) extends Controller with I18n
 
   var returnUrl : Option[String] = None
 
-  def redirect(url : String = "/") = Redirect(returnUrl.getOrElse(url))
+  def redirect(call : Call): Result = redirect(call.url)
+
+  def redirect(url : String = "/"): Result = Redirect(returnUrl.getOrElse(url))
 
   def BaseAction(delegate: RequestContext[AnyContent] => Future[Result]): Action[AnyContent] =
     BaseAction(parse.anyContent, userCheck = true)(delegate)
@@ -28,7 +30,7 @@ class CoreController(implicit ec: ExecutionContext) extends Controller with I18n
     BaseAction(bp, userCheck = true)(delegate)
 
   def BaseAction(userCheck : Boolean)(delegate: RequestContext[AnyContent] => Future[Result]): Action[AnyContent] =
-    BaseAction(parse.anyContent, userCheck = true)(delegate)
+    BaseAction(parse.anyContent, userCheck = userCheck)(delegate)
 
   def BaseAction[A](bp: BodyParser[A], userCheck : Boolean)(delegate: RequestContext[A] => Future[Result]): Action[A] = Action.async(bp) {
     implicit request : Request[A] =>

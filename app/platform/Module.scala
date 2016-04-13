@@ -1,10 +1,10 @@
-package modules
+package platform
 
 import com.google.inject.AbstractModule
 import com.google.inject.multibindings.Multibinder
 import modules.core.auth.services.AuthService
 import modules.dlc.services.{RemoteFileService, ShareOnlineFileService}
-import modules.platform.auth.services.PlatformAuthService
+import platform.services.PlatformAuthService
 
 class Module extends AbstractModule {
 

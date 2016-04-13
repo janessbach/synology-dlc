@@ -1,4 +1,4 @@
-package modules.platform.auth.services
+package platform.services
 
 import com.google.inject.{Inject, Singleton}
 import modules.auth
@@ -22,8 +22,9 @@ class PlatformAuthService @Inject()(synologyService : SynologyService)
     request.session.get(auth.UserSessionKey)
       .flatMap(Json.parse(_).asOpt[User])
 
-  override def logout(user: User): Future[Boolean] = Future.successful(true) // FIXME: todo
-
+  override def logout(user: User): Future[Boolean] = synologyService
+    .logout(user)
+    .map(_.success)
 }
 
 object PlatformAuthService {

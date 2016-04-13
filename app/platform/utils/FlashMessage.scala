@@ -1,4 +1,4 @@
-package modules.platform.utils
+package platform.utils
 
 import modules.core.controllers.RequestContext
 import play.api.mvc.Result
