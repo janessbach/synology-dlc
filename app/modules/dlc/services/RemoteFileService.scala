@@ -3,22 +3,17 @@ package modules.dlc.services
 import javax.inject.Inject
 
 import modules.dlc.models.RemoteFile
-import play.api.Logger
 import play.api.libs.ws.WSClient
 
 import scala.concurrent.{ExecutionContext, Future}
 
 trait RemoteFileService {
-
   def urlStart: String
   def checkAvailability(file: RemoteFile): Future[Boolean]
-
 }
 
 class RemoteFileServiceFactory @Inject() (wsClient : WSClient,
                                           fileService: java.util.Set[RemoteFileService]) (implicit ec: ExecutionContext) {
-
-  private val logger = Logger(classOf[RemoteFileServiceFactory])
 
   private val defaultFileService = new DefaultFileService(wsClient)
 

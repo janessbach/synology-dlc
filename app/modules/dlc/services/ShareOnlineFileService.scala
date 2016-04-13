@@ -18,8 +18,7 @@ import play.api.Logger
   *   - $_STATUS:     "OK", "DELETED", "NOT FOUND"
   *   - $_FILESIZE:   Filesize in bytes
   */
-
-class ShareOnlineFileService @Inject() (wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
+class ShareOnlineFileService @Inject()(wsClient : WSClient)(implicit ec: ExecutionContext) extends RemoteFileService {
 
   private val logger = Logger(classOf[ShareOnlineFileService])
 
