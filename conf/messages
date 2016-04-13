@@ -1,0 +1,54 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Application
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+application.logout=Logout
+application.title=<b>Synology</b>DLC
+application.title.short=<b>S</b>DLC
+application.title.browserTab=Synology DLC - {0}
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Downloads
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+downloads.dlcFile=DLC-File
+downloads.dlcFile.status.available=Available
+downloads.dlcFile.status.checking=Checking
+downloads.dlcFile.status.notAvailable=Not available
+downloads.dlcFile.upload=Upload
+downloads.dlcFile.upload.description=Upload the dlc file here.
+downloads.dlcFile.upload.title=Container upload
+downloads.filename=Filename
+downloads.status=Status
+downloads.title=Downloads
+downloads.url=Url
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Dashboard
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dashboard.title=Dashboard
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Forms
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+form.submit=Submit
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Login
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+login.description=Sign in to start your session
+login.username=Username
+login.password=Password
+login.signIn=Sign In
+login.title=Login
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Settings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+settings.ipAddress=Ip address
+settings.port=Port
+settings.title=Settings
+

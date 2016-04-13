@@ -1,21 +1,21 @@
-@()
+@()(implicit context: RequestContext[_])
 <aside class="main-sidebar">
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
                 <a href="@controllers.routes.HomeController.dashboard()">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>@Messages("dashboard.title")</span>
                 </a>
             </li>
             <li>
                 <a href="@controllers.routes.HomeController.downloads()">
-                    <i class="fa fa-download"></i><span>Downloads</span>
+                    <i class="fa fa-download"></i><span>@Messages("downloads.title")</span>
                 </a>
             </li>
             <li>
                 <a href="@controllers.routes.SettingsController.settings()">
-                    <i class="fa fa-gears"></i><span>Settings</span>
+                    <i class="fa fa-gears"></i><span>@Messages("settings.title")</span>
                 </a>
             </li>
         </ul>

@@ -1,11 +1,11 @@
 @import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
 
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit context: RequestContext[_])
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @includeHead("Welcome to Synology DLC")
+        @includeHead(title)
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">

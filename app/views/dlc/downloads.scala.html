@@ -2,9 +2,9 @@
 @import views.html.dlc.dlcUpload
 @import views.html.dlc.downloadFilesOverview
 
-@()
+@()(implicit context: RequestContext[_])
 
-@main("Downloads") {
+@main(Messages("downloads.title")) {
     @dlcUpload()
     @downloadFilesOverview()
 }

@@ -1,0 +1,53 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Application
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+application.logout=Ausloggen
+application.title=<b>Synology</b>DLC
+application.title.short=<b>S</b>DLC
+application.title.browserTab=Synology DLC - {0}
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Downloads
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+downloads.dlcFile=DLC-Datei
+downloads.dlcFile.status.available=Verfügbar
+downloads.dlcFile.status.checking=Prüfend
+downloads.dlcFile.status.notAvailable=Nicht verfügbar
+downloads.dlcFile.upload=Hochladen
+downloads.dlcFile.upload.description=Laden Sie die DLC-Datei hier hoch.
+downloads.dlcFile.upload.title=Container-Upload
+downloads.filename=Dateiname
+downloads.status=Status
+downloads.title=Downloads
+downloads.url=Url
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Dashboard
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dashboard.title=Dashboard
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Forms
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+form.submit=Abschicken
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Login
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+login.description=Melden Sie sich an, um Ihre Sitzung zu beginnen
+login.username=Benutzername
+login.password=Passwort
+login.signIn=Einloggen
+login.title=Anmeldung
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Settings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+settings.ipAddress=Ip-Adresse
+settings.port=Port
+settings.title=Einstellungen

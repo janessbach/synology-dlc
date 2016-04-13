@@ -17,13 +17,13 @@ class AuthController @Inject()(authService: AuthService)
                               (implicit exec: ExecutionContext) extends CoreController {
 
   def index = BaseAction(userCheck = false) { implicit context =>
-    Future.successful(Ok(views.html.platform.login("Login To Synology DLC")))
+    Future.successful(Ok(views.html.platform.login()))
   }
 
   def login : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
     UserForm.formMapping.bindFromRequest.fold(
       formWithErrors => {
-        val html = views.html.platform.login("Login To Synology DLC", Some(formWithErrors))
+        val html = views.html.platform.login(Some(formWithErrors))
         Future.successful(BadRequest(html))
       },
       userData => authService.login(userData.name, userData.password).map(checkLogin)
