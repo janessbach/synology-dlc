@@ -1,5 +1,6 @@
 import org.rbayer.GruntSbtPlugin._
 import GruntKeys._
+import play.twirl.sbt.Import.TwirlKeys._
 
 name := """synology-dlc"""
 
@@ -10,6 +11,11 @@ lazy val gruntSbtPlugin = uri("https://github.com/rossbayer/grunt-sbt.git")
 lazy val root = (project in file(".")).enablePlugins(PlayScala).dependsOn(gruntSbtPlugin)
 
 scalaVersion := "2.11.7"
+
+templateImports ++= Seq(
+  "modules.core.TemplateMixin._",
+  "modules.core.controllers.RequestContext"
+)
 
 libraryDependencies ++= Seq(
   "net.codingwell" %% "scala-guice" % "4.0.1",
@@ -32,3 +38,4 @@ gruntPath := "node_modules/grunt-cli/bin/grunt"
 gruntTasks in Compile := Seq("bower-install-simple", "sync", "concat")
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
