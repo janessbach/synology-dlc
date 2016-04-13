@@ -2,7 +2,7 @@
 @import views.html.dlc.dlcUpload
 @import views.html.dlc.downloadFilesOverview
 
-@()(implicit context: RequestContext[Any])
+@()(implicit context: RequestContext[AnyContent])
 
 @main(Messages("downloads.title")) {
     @dlcUpload()
