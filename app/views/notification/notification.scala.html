@@ -1,0 +1,22 @@
+<script type="text/javascript" charset="utf-8">
+    (function($) {
+        $(function() {
+            var feed = new EventSource("@routes.ApiController.mixedStream(List("1").mkString(","))");
+            console.log("feed", feed);
+            feed.addEventListener('message', function(event) {
+                var result  = $.parseJSON(event.data);
+                $("body").trigger('message', result);
+            }, false);
+        });
+    })(jQuery);
+</script>
+
+<script>
+    (function($) {
+        $(function() {
+            $("body").on('message', function(event, data) {
+                console.log(data);
+            });
+        });
+    })(jQuery);
+</script>
