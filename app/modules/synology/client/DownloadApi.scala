@@ -44,13 +44,10 @@ class DownloadApi @Inject() (wsClient : WSClient) (implicit ec: ExecutionContext
       }
     }
 
-  private def addDefaultPostData(loginStatus: LoginStatus, postData: Map[String, Seq[String]]): Map[String, Seq[String]] = {
-    val defaultData : Map[String, Seq[String]] = Map(
+  private def addDefaultPostData(loginStatus: LoginStatus, postData: Map[String, Seq[String]]): Map[String, Seq[String]] =
+    postData ++ Map(
       "api" -> Seq("SYNO.DownloadStation.Task"),
       "_sid" -> Seq(loginStatus.data.sid)
     )
-
-    defaultData ++ postData
-  }
 
 }
