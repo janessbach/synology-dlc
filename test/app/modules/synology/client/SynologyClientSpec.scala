@@ -2,16 +2,16 @@ package app.modules.synology.client
 
 import mixins.NoApplication
 import mockws.MockWS
-import modules.synology.client.{ClientApi, ClientApiConfiguration}
+import modules.synology.client.{SynologyClient, SynologyClientConfiguration}
 import play.api.mvc.{Action, Results}
 
-class ClientApiSpec extends NoApplication {
+class SynologyClientSpec extends NoApplication {
 
   trait Env {
     val SuccessResponse = s"""{ "esearchresult": { "idlist": [""] } }"""
     val ErrorResponse = """{ "malformed" : "noidea" }"""
 
-    val clientApiConfiguration = mock[ClientApiConfiguration]
+    val clientApiConfiguration = mock[SynologyClientConfiguration]
 
     val ws = MockWS {
       case ("GET", url) if url == "" => Action { Results.Ok(SuccessResponse).as("application/json") }
@@ -23,7 +23,7 @@ class ClientApiSpec extends NoApplication {
 
     "be able to query the service and get the results" in new Env {
 
-      val service = new ClientApi(ws, clientApiConfiguration)
+      val service = new SynologyClient(ws, clientApiConfiguration)
 
       /*
       val futurePubMedModel: Future[PubMedModel] = service.queryWebservice("Automobil")
