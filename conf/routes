@@ -1,12 +1,13 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-
 GET     /                           controllers.AuthController.index
 GET     /login                      controllers.AuthController.index
 POST    /login                      controllers.AuthController.login
 GET     /logout                     controllers.AuthController.logout
 
+POST    /api/decrypt                controllers.ApiController.dlcDecrypt
+GET     /api/subscribe              controllers.ApiController.subscribe
 POST    /api/decrypt                controllers.ApiController.dlcDecrypt
 GET     /api/downloads              controllers.ApiController.downloads
 

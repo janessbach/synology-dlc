@@ -1,7 +1,6 @@
 @import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
 
 @(title: String)(content: Html)(implicit context: RequestContext[_])
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,7 +10,6 @@
         <div class="wrapper">
             @includeHeader()
             @includeNavigation()
-
             <div class="content-wrapper">
                 <section class="content-header">
                     <h1>@title</h1>
@@ -20,15 +18,13 @@
                         <li class="active">Here</li>
                     </ol>
                 </section>
-
                 <section class="content">
                     @content
                 </section>
             </div>
-
         </div>
-
         <script src="@routes.Assets.versioned("js/basic.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("js/extra.js")" type="text/javascript"></script>
+        @notification.notification()
     </body>
 </html>

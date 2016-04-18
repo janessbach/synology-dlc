@@ -1,29 +1,26 @@
 package controllers
 
-import javax.inject._
+import javax.inject.Inject
 
+import akka.actor.ActorSystem
+import akka.stream.Materializer
 import modules.core.controllers.CoreController
+import modules.core.notification.services.NotificationService
 import modules.dlc.models.RemoteFile
 import modules.dlc.services.{DlcExtractorService, RemoteFileServiceFactory}
 import platform.services.DownloadService
-import play.api.libs.json.Json
-import play.api.mvc.{Action, AnyContent}
+import play.api.libs.json.{Json, _}
+import play.api.mvc.{Action, AnyContent, _}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-@Singleton
-class ApiController @Inject()(dlcExtractorService: DlcExtractorService,
+class ApiController @Inject()(notificationService: NotificationService,
                               remoteFileService: RemoteFileServiceFactory,
+                              dlcExtractorService: DlcExtractorService,
                               downloadService: DownloadService)
-                             (implicit exec: ExecutionContext) extends CoreController {
+                             (implicit exec: ExecutionContext, actorSystem: ActorSystem, materializer: Materializer) extends CoreController {
 
   private val HtmlDlcInputName = "dlc-file"
-
-  def dlcDecrypt = BaseAction(parse.multipartFormData) { implicit context =>
-    context.request.body.file(HtmlDlcInputName) map { item =>
-      Future.successful(Ok(Json.toJson(dlcExtractorService.extract(item.ref.file))))
-    } getOrElse Future.successful(BadRequest)
-  }
 
   def available(url: String) = BaseAction { implicit context =>
     remoteFileService.checkAvailability(RemoteFile(name = "", url = url)) map { available =>
@@ -32,6 +29,12 @@ class ApiController @Inject()(dlcExtractorService: DlcExtractorService,
       else
         Gone
     }
+  }
+
+  def dlcDecrypt = BaseAction(parse.multipartFormData) { implicit context =>
+    context.request.body.file(HtmlDlcInputName) map { item =>
+      Future.successful(Ok(Json.toJson(dlcExtractorService.extract(item.ref.file))))
+    } getOrElse Future.successful(BadRequest)
   }
 
   def downloads: Action[AnyContent] = BaseAction { implicit context =>
@@ -49,5 +52,8 @@ class ApiController @Inject()(dlcExtractorService: DlcExtractorService,
         BadRequest
     }
   }
+
+  def subscribe = WebSocket.accept[JsValue, JsValue] { request => notificationService.flow }
+
 }
 
