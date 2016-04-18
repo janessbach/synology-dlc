@@ -1,7 +1,5 @@
 package modules.synology.client
 
-import java.net.URLEncoder
-
 import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import modules.synology.models.downloads.{DownloadStatus, Downloads}
@@ -72,19 +70,22 @@ class SynologyClient @Inject()(wsClient : WSClient,
     }
 
     val url = wsClient.url(ApiPrefix + uri)
-    logger.debug("requesting url" + url)
 
     currentReceiver.apply(url).map { response =>
       Json.parse(response.body).validate[A] match {
-        case JsSuccess(v, path) => Some(v)
-        case e: JsError => None
+        case JsSuccess(value, path) =>
+          logger.debug("[OK] requesting url" + url + ". With response: " + value.toString)
+          Some(value)
+        case e: JsError =>
+          logger.error("[FAIL] requesting url" + url + ". With error: " + e.toString)
+          None
       }
     }
   }
 
 }
 
-
+class RequestException
 
 trait Receivers {
   type Receiver = WSRequest => Future[WSResponse]
