@@ -6,8 +6,10 @@ GET     /login                      controllers.AuthController.index
 POST    /login                      controllers.AuthController.login
 GET     /logout                     controllers.AuthController.logout
 
-POST    /api/decrypt               controllers.ApiController.dlcDecrypt
-GET     /api/subscribe             controllers.ApiController.subscribe
+POST    /api/decrypt                controllers.ApiController.dlcDecrypt
+GET     /api/subscribe              controllers.ApiController.subscribe
+POST    /api/decrypt                controllers.ApiController.dlcDecrypt
+GET     /api/downloads              controllers.ApiController.downloads
 
 GET     /dashboard                  controllers.HomeController.dashboard
 GET     /downloads                  controllers.HomeController.downloads

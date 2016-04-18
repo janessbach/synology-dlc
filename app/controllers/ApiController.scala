@@ -6,19 +6,33 @@ import akka.actor.ActorSystem
 import akka.stream.Materializer
 import modules.core.controllers.CoreController
 import modules.core.notification.services.NotificationService
-import modules.dlc.services.DlcExtractorService
-import play.api.libs.json._
+import modules.dlc.models.RemoteFile
+import modules.dlc.services.{DlcExtractorService, RemoteFileServiceFactory}
+import platform.services.DownloadService
+import play.api.libs.json.{Json, _}
 import play.api.libs.ws.WSClient
-import play.api.mvc._
+import play.api.mvc.{Action, AnyContent, _}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ApiController @Inject()(wsClient : WSClient,
+class ApiController @Inject()(wsClient: WSClient,
                               notificationService: NotificationService,
-                              dlcExtractorService: DlcExtractorService)
-                             (implicit exec: ExecutionContext, actorSystem:ActorSystem, materializer: Materializer) extends CoreController {
+                              remoteFileService: RemoteFileServiceFactory,
+                              dlcExtractorService: DlcExtractorService,
+                              downloadService: DownloadService)
+                             (implicit exec: ExecutionContext, actorSystem: ActorSystem, materializer: Materializer) extends CoreController {
+
 
   private val HtmlDlcInputName = "dlc-file"
+
+  def available(url: String) = BaseAction { implicit context =>
+    remoteFileService.checkAvailability(RemoteFile(name = "", url = url)) map { available =>
+      if (available)
+        Ok(Json.toJson(available))
+      else
+        Gone
+    }
+  }
 
   def dlcDecrypt = BaseAction(parse.multipartFormData) { implicit context =>
     context.request.body.file(HtmlDlcInputName) map { item =>
@@ -26,7 +40,21 @@ class ApiController @Inject()(wsClient : WSClient,
     } getOrElse Future.successful(BadRequest)
   }
 
-  def available = BaseAction { implicit context => Future.successful(Ok("")) }
+  def downloads: Action[AnyContent] = BaseAction { implicit context =>
+    downloadService.downloads(context.user).map {
+      case Some(downloads) => Ok(Json.toJson(downloads))
+      case _ => BadRequest
+    }
+  }
+
+  def download(urls: List[String]) = BaseAction { implicit context =>
+    downloadService.download(context.user)(urls) map { status =>
+      if (status)
+        Ok(Json.toJson(status))
+      else
+        BadRequest
+    }
+  }
 
   def subscribe = WebSocket.accept[JsValue, JsValue] { request => notificationService.flow }
 
