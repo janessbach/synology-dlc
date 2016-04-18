@@ -10,18 +10,15 @@ import modules.dlc.models.RemoteFile
 import modules.dlc.services.{DlcExtractorService, RemoteFileServiceFactory}
 import platform.services.DownloadService
 import play.api.libs.json.{Json, _}
-import play.api.libs.ws.WSClient
 import play.api.mvc.{Action, AnyContent, _}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ApiController @Inject()(wsClient: WSClient,
-                              notificationService: NotificationService,
+class ApiController @Inject()(notificationService: NotificationService,
                               remoteFileService: RemoteFileServiceFactory,
                               dlcExtractorService: DlcExtractorService,
                               downloadService: DownloadService)
                              (implicit exec: ExecutionContext, actorSystem: ActorSystem, materializer: Materializer) extends CoreController {
-
 
   private val HtmlDlcInputName = "dlc-file"
 
