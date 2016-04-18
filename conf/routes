@@ -1,22 +1,17 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-
 GET     /                           controllers.AuthController.index
 GET     /login                      controllers.AuthController.index
 POST    /login                      controllers.AuthController.login
 GET     /logout                     controllers.AuthController.logout
 
 POST    /api/decrypt               controllers.ApiController.dlcDecrypt
+GET     /api/subscribe             controllers.ApiController.subscribe
 
 GET     /dashboard                  controllers.HomeController.dashboard
 GET     /downloads                  controllers.HomeController.downloads
 GET     /settings                   controllers.SettingsController.settings
-
-GET    /timeline                   controllers.ApiController.timeline(keyword:String)
-GET    /mixedStream                controllers.ApiController.mixedStream(queries:String)
-
-
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

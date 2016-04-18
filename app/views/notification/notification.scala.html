@@ -1,12 +1,17 @@
+@()(implicit context: RequestContext[_])
+
+<script src="@routes.Assets.versioned("js/jquery.gracefulWebSocket.js")" type="text/javascript"></script>
+
 <script type="text/javascript" charset="utf-8">
     (function($) {
         $(function() {
-            var feed = new EventSource("@routes.ApiController.mixedStream(List("1").mkString(","))");
-            console.log("feed", feed);
-            feed.addEventListener('message', function(event) {
-                var result  = $.parseJSON(event.data);
-                $("body").trigger('message', result);
-            }, false);
+            var ws = $.gracefulWebSocket('@routes.ApiController.subscribe().webSocketURL()');
+            //ws.send("message to server");
+            ws.onmessage = function (event) {
+                var messageFromServer = event.data;
+                console.log(messageFromServer);
+                $("body").trigger('message', messageFromServer);
+            };
         });
     })(jQuery);
 </script>
