@@ -18,7 +18,7 @@ class SynologyClient @Inject()(wsClient : WSClient,
   private val ApiPrefix = "http://192.168.1.2:5000"
 
   private def loginCall[A](username: String, password: String)(implicit reads: Reads[A]) = retrieve(
-    uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${UriEncoding.encodePathSegment(username, "utf-8")}&passwd=${URLEncoder.encode(password, "utf-8")}&session=DownloadStation&format=cookie"
+    uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${URLEncoder.encode(username, "utf-8")}&passwd=${URLEncoder.encode(password, "utf-8")}&session=DownloadStation&format=cookie"
   )
 
   private def logoutCall[A](implicit reads: Reads[A]) = retrieve(
