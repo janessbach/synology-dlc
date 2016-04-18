@@ -5,17 +5,21 @@ import java.net.URLEncoder
 import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import modules.synology.models.downloads.{DownloadStatus, Downloads}
-import play.api.Configuration
+import play.api.{Configuration, Logger}
 import play.api.libs.json._
-import play.api.libs.ws.WSClient
+import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.utils.UriEncoding
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class SynologyClient @Inject()(wsClient : WSClient,
-                               config: SynologyClientConfiguration)(implicit ec: ExecutionContext) {
+class SynologyClientConfiguration @Inject()(config: Configuration)
 
-  private val ApiPrefix = "http://192.168.1.2:5000"
+class SynologyClient @Inject()(wsClient : WSClient,
+                               config: SynologyClientConfiguration)(implicit ec: ExecutionContext) extends Receivers {
+
+  private val ApiPrefix = "http://192.168.1.2:5000" // FIXME: Need to refer to the configuration!
+
+  private val logger = Logger(getClass)
 
   private def loginCall[A](username: String, password: String)(implicit reads: Reads[A]) = retrieve(
     uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${URLEncoder.encode(username, "utf-8")}&passwd=${URLEncoder.encode(password, "utf-8")}&session=DownloadStation&format=cookie"
@@ -25,71 +29,68 @@ class SynologyClient @Inject()(wsClient : WSClient,
     uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=1&method=logout&session=DownloadStation"
   )
 
-  private val DownloadTaskUri = "/webapi/DownloadStation/task.cgi"
-
-  def login(username: String, password: String) : Future[LoginStatus] = {
-
-    import LoginStatus._
-
-    loginCall(username, password) map { _ getOrElse NotLoggedIn }
-  }
-
-  def logout(loginStatus: LoginStatus) : Future[LogoutStatus] = {
-
-    import LogoutStatus._
-
-    logoutCall map { _ getOrElse LogoutDone }
-  }
-
-  def download(loginStatus: LoginStatus)(urls: List[String]): Future[DownloadStatus] = {
-    val postData = Map(
-      "version" -> Seq("3"),
-      "method" -> Seq("create"),
-      "uri" -> Seq(urls.mkString(","))
-    )
-
-    import DownloadStatus._
-
-    post(DownloadTaskUri, loginStatus, postData) map(_ getOrElse DownloadStatus(success = false))
-  }
-
-  def listDownloads(loginStatus: LoginStatus): Future[Downloads] = {
-    val postData = Map(
+  private def currentDownloadsCall[A](loginStatus: LoginStatus)(implicit reads: Reads[A]) = retrieve(
+    uri = s"/webapi/DownloadStation/task.cgi",
+    postData = Some(Map(
       "version" -> Seq("1"),
-      "method" -> Seq("list")
-    )
+      "api"     -> Seq("SYNO.DownloadStation.Task"),
+      "method"  -> Seq("list")
+    )),
+    loginStatus = Some(loginStatus)
+  )
 
-    import Downloads._
+  private def addDownloadsCall[A](loginStatus: LoginStatus)(urls: List[String])(implicit reads: Reads[A]) = retrieve(
+    uri = s"/webapi/DownloadStation/task.cgi",
+    postData = Some(Map(
+      "version" -> Seq("3"),
+      "method"  -> Seq("create"),
+      "uri"     -> Seq(urls.mkString(",")
+    ))),
+    loginStatus = Some(loginStatus)
+  )
 
-    post(DownloadTaskUri, loginStatus, postData) map (_ getOrElse Downloads(total = 0, files = Nil, success = false))
+  def login(username: String, password: String) : Future[LoginStatus] =
+    loginCall(username, password)(LoginStatus.reads) map ( _ getOrElse LoginStatus.NotLoggedIn )
+
+  def logout(loginStatus: LoginStatus) : Future[LogoutStatus] =
+    logoutCall(LogoutStatus.reads) map ( _ getOrElse LogoutStatus.LogoutDone )
+
+  def addDownloads(loginStatus: LoginStatus)(urls: List[String]): Future[DownloadStatus] =
+    addDownloadsCall(loginStatus)(urls)(DownloadStatus.reads) map ( _ getOrElse DownloadStatus.Failed )
+
+  def currentDownloads(loginStatus: LoginStatus): Future[Downloads] =
+    currentDownloadsCall(loginStatus)(Downloads.reads) map (_ getOrElse Downloads.empty )
+
+  private def retrieve[A](uri: String, loginStatus: Option[LoginStatus] = None, postData: Option[Map[String, Seq[String]]] = None)
+                         (implicit reads: Reads[A]) : Future[Option[A]] = {
+
+    def currentReceiver : Receiver = postData match {
+      case Some(data) =>
+        val loginSession = loginStatus.map(status => Map("_sid" -> Seq(status.data.sid))).getOrElse(Map.empty)
+        postReceiver(loginSession ++ data)
+      case _ => getReceiver
+    }
+
+    val url = wsClient.url(ApiPrefix + uri)
+    logger.debug("requesting url" + url)
+
+    currentReceiver.apply(url).map { response =>
+      Json.parse(response.body).validate[A] match {
+        case JsSuccess(v, path) => Some(v)
+        case e: JsError => None
+      }
+    }
   }
-
-
-  private def retrieve[A](uri: String)(implicit reads: Reads[A]) : Future[Option[A]] = wsClient
-    .url(ApiPrefix + uri)
-    .get()
-    .map { response =>
-      Json.parse(response.body).validate[A] match {
-        case JsSuccess(v, path) => Some(v); case e: JsError => None
-      }
-    }
-
-  private def post[A](uri: String, loginStatus: LoginStatus, postData: Map[String, Seq[String]])(implicit reads: Reads[A]) : Future[Option[A]] = wsClient
-    .url(ApiPrefix + uri)
-    .post(addDefaultPostData(loginStatus, postData))
-    .map { response =>
-      Json.parse(response.body).validate[A] match {
-        case JsSuccess(v, path) => Some(v); case e: JsError => None
-      }
-    }
-
-  private def addDefaultPostData(loginStatus: LoginStatus, postData: Map[String, Seq[String]]): Map[String, Seq[String]] =
-    postData ++ Map(
-      "api" -> Seq("SYNO.DownloadStation.Task"),
-      "_sid" -> Seq(loginStatus.data.sid)
-    )
 
 }
 
-class SynologyClientConfiguration @Inject()(config: Configuration)
+
+
+trait Receivers {
+  type Receiver = WSRequest => Future[WSResponse]
+  def getReceiver : Receiver = { request => request.get() }
+  def postReceiver(postData: Map[String, Seq[String]]) : Receiver = { request => request.post(postData) }
+}
+
+
 
