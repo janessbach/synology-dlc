@@ -41,6 +41,7 @@ class SynologyClient @Inject()(wsClient : WSClient,
     uri = s"/webapi/DownloadStation/task.cgi",
     postData = Some(Map(
       "version" -> Seq("3"),
+      "api"     -> Seq("SYNO.DownloadStation.Task"),
       "method"  -> Seq("create"),
       "uri"     -> Seq(urls.mkString(",")
     ))),
