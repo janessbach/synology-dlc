@@ -8,6 +8,8 @@ case class Downloads(total: Int, files: List[DownloadFile], success: Boolean)
 
 object Downloads {
 
+  val empty = Downloads(total = 0, files = Nil, success = false)
+
   implicit val reads: Reads[Downloads] = (
     (JsPath \ "data" \ "total").read[Int] and
       (JsPath \ "data" \ "tasks").read[List[DownloadFile]] and
