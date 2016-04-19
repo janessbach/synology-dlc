@@ -42,8 +42,8 @@
         $('.start-file-download').on('click', function() {
             var urls = [];
 
-            $('tr.decrypted-dlc-file').toArray().forEach(function(element) {
-                var $element = $(element);
+            $('tr.decrypted-dlc-file').each(function() {
+                var $element = $(this);
                 var checkbox = $element.find('input[type=checkbox]');
 
                 if (checkbox.is(':checked')) {
