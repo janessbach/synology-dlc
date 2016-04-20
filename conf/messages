@@ -11,6 +11,7 @@ application.title.browserTab=Synology DLC - {0}
 # Downloads
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 downloads.dlcFile=DLC-File
+downloads.decryptedDlcFiles=Decrypted files
 downloads.dlcFile.status.available=Available
 downloads.dlcFile.status.checking=Checking
 downloads.dlcFile.status.notAvailable=Not available
@@ -18,7 +19,10 @@ downloads.dlcFile.upload=Upload
 downloads.dlcFile.upload.description=Upload the dlc file here.
 downloads.dlcFile.upload.title=Container upload
 downloads.filename=Filename
+downloads.selectAll=Select/unselect all
+downloads.start=Start download
 downloads.status=Status
+downloads.trash=Trash items
 downloads.title=Downloads
 downloads.url=Url
 

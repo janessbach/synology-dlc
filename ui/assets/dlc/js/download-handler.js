@@ -5,7 +5,9 @@
     'use strict';
 
     var _opts = {
-        'uploadUrl': '/api/decrypt'
+        'uploadUrl': '/api/dlc/decrypt',
+        'startDownloadUrl': '/api/downloads/add'
+
     };
 
     function DownloadHandler(opts) {
@@ -26,7 +28,21 @@
             }
         });
     };
-    
+
+    DownloadHandler.prototype.startDownload = function (formData) {
+        $.ajax({
+            url: _opts.startDownloadUrl,
+            type: 'POST',
+            data: formData,
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+            }
+        })
+    };
+
+
     global.DownloadHandler = DownloadHandler;
     
 })(this, this.jQuery);
