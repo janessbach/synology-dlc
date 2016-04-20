@@ -9,6 +9,7 @@
         var downloadHandler = new global.DownloadHandler();
         registerDecryptEvent(downloadHandler);
         registerStartDownloadEvent(downloadHandler);
+        registerDeleteFilesEvent();
     });
 
     function initCheckboxToggle() {
@@ -40,20 +41,29 @@
 
     function registerStartDownloadEvent(downloadHandler) {
         $('.start-file-download').on('click', function() {
-            var urls = [];
-
-            $('tr.decrypted-dlc-file').each(function() {
-                var $element = $(this);
-                var checkbox = $element.find('input[type=checkbox]');
-
-                if (checkbox.is(':checked')) {
-                    var fileName = $element.find('.decrypted-dlc-file-name').text();
-                    var fileUrl = $element.find('.decrypted-dlc-file-url').text();
-                    urls.push({name: fileName, url: fileUrl});
-                }
+            var urls = getSelectedFileElements().map(function(element) {
+                var $element = $(element);
+                var fileName = $element.find('.decrypted-dlc-file-name').text();
+                var fileUrl = $element.find('.decrypted-dlc-file-url').text();
+                return {name: fileName, url: fileUrl};
             });
 
             downloadHandler.startDownload(JSON.stringify(urls));
+        });
+    }
+
+    function registerDeleteFilesEvent() {
+        $('.delete-files').on('click', function() {
+            getSelectedFileElements().map(function(element) {
+                $(element).remove();
+            });
+        })
+    }
+
+    function getSelectedFileElements() {
+        return $('tr.decrypted-dlc-file').toArray().filter(function(element) {
+            var checkbox = $(element).find('input[type=checkbox]');
+            return !!checkbox && checkbox.is(':checked');
         });
     }
 
