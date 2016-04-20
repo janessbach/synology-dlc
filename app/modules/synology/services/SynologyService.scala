@@ -12,9 +12,17 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class SynologyService @Inject() (client : SynologyClient)(implicit ec: ExecutionContext) {
 
-  def addDownloads[A](files: List[RemoteFile])(implicit context : RequestContext[A]): Future[Boolean] = client
-    .addDownloads(context.user.loginStatus)(files.map(_.url))
-    .map(_.success)
+
+  def addDownloads[A](files: List[RemoteFile])(implicit context : RequestContext[A]): Future[Boolean] = {
+    /**
+      * Due to synology api limits, where limiting the files to packets of size 50.
+      */
+    def processFiles(files: List[RemoteFile]): Future[Boolean] = client
+        .addDownloads(context.user.loginStatus)(files.map(_.url))
+        .map(_.success)
+
+    Future.sequence(files.grouped(50).map(processFiles).toList).map(_.forall(_ => true))
+  }
 
   // RETHINK ABOUT THIS DATA TYPE
   def currentDownloads(user: User): Future[Option[List[Download]]] = client
