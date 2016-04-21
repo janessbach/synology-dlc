@@ -12,6 +12,7 @@ module.exports = function (grunt) {
     global.libs.JQUERY_ASSETS = 'ui/bower_components/admin-lte/plugins/jQuery/';
     global.libs.ICHECK_ASSETS = 'ui/bower_components/admin-lte/plugins/iCheck/';
     global.libs.INPUTMASK_ASSETS = 'ui/bower_components/admin-lte/plugins/input-mask/';
+    global.libs.WEBSOCKET_ASSETS = 'ui/bower_components/jquery-graceful-websocket/';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json')
