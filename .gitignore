@@ -132,6 +132,7 @@ project/boot/
 .history
 .cache
 
+ui/scripts.js
 ui/bower_components
 node_modules
 public
