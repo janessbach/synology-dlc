@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     global.dlc.DLC_ASSETS = 'ui/assets/dlc/';
 
     global.libs = {};
+    global.libs.BOWER_COMPONENTS = 'ui/bower_components/';
     global.libs.BOOTSTRAP_ASSETS = 'ui/bower_components/admin-lte/bootstrap/';
     global.libs.ADMINLTE_ASSETS = 'ui/bower_components/admin-lte/dist/';
     global.libs.JQUERY_ASSETS = 'ui/bower_components/admin-lte/plugins/jQuery/';

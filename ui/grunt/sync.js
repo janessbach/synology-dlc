@@ -4,6 +4,13 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {
+                    cwd: global.libs.BOWER_COMPONENTS,
+                    src: [
+                        'scripts.js'
+                    ],
+                    dest: 'public/js/'
+                },
+                {
                     cwd: global.dlc.PLATFORM_ASSETS,
                     src: [
                         '**/*.css'
