@@ -21,7 +21,7 @@ class ConfigurationService extends FileBasedConfigurationService(file = FileProv
 
   def hostIp: String = getAs[String](ConfigHostName) getOrElse "127.0.0.1"
 
-  def hostPort: Int = getAs[Int](ConfigHostPort) getOrElse 5555
+  def hostPort: Int = getAs[Int](ConfigHostPort) getOrElse 5000
 
 }
 
