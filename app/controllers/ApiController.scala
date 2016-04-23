@@ -40,7 +40,7 @@ class ApiController @Inject()(notificationService: NotificationService,
 
   def currentDownloads: Action[AnyContent] = BaseAction { implicit context =>
     synologyService.currentDownloads(context.user) map {
-      case Some(downloads) => Ok(Json.toJson(downloads))
+      case downloads => Ok(Json.toJson(downloads))
       case _ => BadRequest
     }
   }
