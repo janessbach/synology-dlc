@@ -20,7 +20,12 @@ class AuthController @Inject()(authService: AuthService,
                               (implicit exec: ExecutionContext) extends CoreController with Constants {
 
   def index = BaseAction(userCheck = false) { implicit context =>
-    val defaultValues = UserForm.formMapping.bind(Map(UserForm.Ip -> configuration.hostIp))
+    val defaultValues = UserForm.formMapping.bind(
+      Map(
+        UserForm.Ip -> configuration.hostIp,
+        UserForm.Port -> configuration.hostPort.toString
+      )
+    )
     Future.successful(Ok(views.html.platform.login(Some(defaultValues))))
   }
 
@@ -31,9 +36,9 @@ class AuthController @Inject()(authService: AuthService,
         Future.successful(BadRequest(html))
       },
       userData => {
+        saveToConfiguration(userData)
         authService.login(userData.name, userData.password).map {
           case user @ User(username,loginStatus) if loginStatus.success =>
-            configuration.set(ConfigHostName, ConfigValueFactory fromAnyRef userData.ip)
             redirect(controllers.routes.HomeController.dashboard())
               .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString)
               .flashing()     // user logged in
@@ -45,18 +50,24 @@ class AuthController @Inject()(authService: AuthService,
     )
   }
 
+  private def saveToConfiguration(userData: UserForm) = {
+    configuration.set(ConfigHostName, ConfigValueFactory fromAnyRef userData.ip)
+    configuration.set(ConfigHostPort, ConfigValueFactory fromAnyRef userData.port)
+  }
+
   def logout : Action[AnyContent] = BaseAction { implicit context =>
     authService.logout(context.user).map(_ => redirect(controllers.routes.AuthController.login()).withNewSession)
   }
 
 }
 
-case class UserForm(ip: String, name: String, password: String)
+case class UserForm(ip: String, port : Int, name: String, password: String)
 
 object UserForm {
   val Ip = "ip"
   val Username = "username"
   val Password = "password"
+  val Port = "port"
 
   def value(key : String)(userForm: Option[Form[UserForm]]): Option[String] =
     userForm.flatMap(_.data.get(key))
@@ -64,6 +75,7 @@ object UserForm {
   val formMapping = Form(
     mapping(
       Ip -> text,
+      Port -> number,
       Username -> text,
       Password -> text
     )(UserForm.apply)(UserForm.unapply)

@@ -4,7 +4,7 @@ import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import modules.synology.models.downloads.{DownloadStatus, Downloads}
 import platform.config.ConfigurationService
-import play.api.{Configuration, Logger}
+import play.api.Logger
 import play.api.libs.json._
 import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.utils.UriEncoding
@@ -13,7 +13,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class SynologyClientConfiguration @Inject()(config: ConfigurationService) {
   val Ip = config hostIp
-  val Port = 5000 // FIXME make me configurable
+  val Port = config hostPort
 }
 
 class SynologyClient @Inject()(wsClient : WSClient,
