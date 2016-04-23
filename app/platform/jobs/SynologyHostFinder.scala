@@ -20,7 +20,7 @@ class SynologyHostFinder @Inject()(actorSystem : ActorSystem,
   val cancellable = actorSystem.scheduler.schedule(0.seconds, 1.seconds)(runJob)
 
   /**
-    * This Job is run every 3 Seconds and it's result
+    * This job is run every 3 seconds and it's result
     * is pushed via web sockets to all subscribers.
     */
   private def runJob : Unit = {

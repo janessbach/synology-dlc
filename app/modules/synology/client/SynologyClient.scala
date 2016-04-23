@@ -3,6 +3,7 @@ package modules.synology.client
 import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import modules.synology.models.downloads.{DownloadStatus, Downloads}
+import platform.config.ConfigurationService
 import play.api.{Configuration, Logger}
 import play.api.libs.json._
 import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
@@ -10,12 +11,15 @@ import play.utils.UriEncoding
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class SynologyClientConfiguration @Inject()(config: Configuration)
+class SynologyClientConfiguration @Inject()(config: ConfigurationService) {
+  val Ip = config hostIp
+  val Port = 5000 // FIXME make me configurable
+}
 
 class SynologyClient @Inject()(wsClient : WSClient,
                                config: SynologyClientConfiguration)(implicit ec: ExecutionContext) extends Receivers {
 
-  private val ApiPrefix = "http://192.168.1.2:5000" // FIXME: Need to refer to the configuration!
+  private val ApiPrefix = "http://" + config.Ip + ":" + config.Port
 
   private val logger = Logger(getClass)
 
@@ -75,7 +79,7 @@ class SynologyClient @Inject()(wsClient : WSClient,
     currentReceiver.apply(url).map { response =>
       Json.parse(response.body).validate[A] match {
         case JsSuccess(value, path) =>
-          logger.debug("[OK] requesting url" + url + ". With response: " + value.toString)
+          logger.info("[OK] requesting url" + url + ". With response: " + value.toString)
           Some(value)
         case e: JsError =>
           logger.error("[FAIL] requesting url" + url + ". With error: " + e.toString)
@@ -85,8 +89,6 @@ class SynologyClient @Inject()(wsClient : WSClient,
   }
 
 }
-
-class RequestException
 
 trait Receivers {
   type Receiver = WSRequest => Future[WSResponse]
