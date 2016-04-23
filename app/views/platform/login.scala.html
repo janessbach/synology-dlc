@@ -13,16 +13,23 @@
             <div class="login-box-body">
                 <p class="login-box-msg">@Messages("login.description")</p>
                 <form action="@controllers.routes.AuthController.login" method="post">
-                    <div class="form-group">
-                        <label>@Messages("login.ipmask")</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-laptop"></i>
+                    <label>@Messages("login.ip")</label>
+                    <div class="row margin-bottom">
+                        <div class="col-xs-8">
+                            <div class="input-group has-feedback">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-laptop"></i>
+                                </div>
+                                <input value="@UserForm.value("ip")(userForm).getOrElse("127.0.0.1")" name="ip" type="text" data-mask="" data-inputmask="'alias': 'ip'" class="form-control">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-check"></i>
+                                </span>
                             </div>
-                            <input value="@UserForm.value("ip")(userForm).getOrElse("127.0.0.1")" name="ip" type="text" data-mask="" data-inputmask="'alias': 'ip:port'" class="form-control">
-                            <span class="input-group-addon">
-                                <i class="fa fa-check"></i>
-                            </span>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="input-group">
+                                <input name="port" type="text" placeholder="5000" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
