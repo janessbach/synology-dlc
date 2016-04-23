@@ -9,11 +9,11 @@ module.exports = function (grunt) {
                 global.libs.INPUTMASK_ASSETS + 'jquery.inputmask.js',
                 global.libs.INPUTMASK_ASSETS + 'jquery.inputmask.extensions.js',
                 global.libs.ADMINLTE_ASSETS + 'js/*.min.js',
-                global.dlc.PLATFORM_ASSETS + 'js/*.js',
-                global.dlc.DLC_ASSETS + 'js/*.js',
-                global.libs.WEBSOCKET_ASSETS + '*.js'
+                global.libs.WEBSOCKET_ASSETS + '*.js',
+                global.libs.PLATFORM_ASSETS + 'js/*.js',
+                global.libs.DLC_ASSETS + 'js/*.js'
             ],
-            dest: 'ui/bower_components/scripts.js'
+            dest: global.base.UI_TMP + 'js/scripts.js'
         }
     });
 };

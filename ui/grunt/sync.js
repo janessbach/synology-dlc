@@ -4,54 +4,35 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {
-                    cwd: global.libs.BOWER_COMPONENTS,
-                    src: [
-                        'scripts.js'
-                    ],
-                    dest: 'public/js/'
+                    cwd: global.libs.PLATFORM_ASSETS,
+                    src: ['**/*.css'],
+                    dest: global.base.UI_TMP
                 },
                 {
-                    cwd: global.dlc.PLATFORM_ASSETS,
-                    src: [
-                        '**/*.css'
-                    ],
-                    dest: 'public/'
-                },
-                {
-                    cwd: global.dlc.DLC_ASSETS,
-                    src: [
-                        '**/*.css'
-                    ],
-                    dest: 'public/'
+                    cwd: global.libs.DLC_ASSETS,
+                    src: ['**/*.css'],
+                    dest: global.base.UI_TMP
                 },
                 {
                     cwd: global.libs.BOOTSTRAP_ASSETS,
-                    src: [
-                        'css/*.min.css',
-                        'fonts/**'
-                    ],
-                    dest: 'public/'
+                    src: ['css/*.min.css', 'fonts/**'],
+                    dest: global.base.UI_TMP
                 },
                 {
                     cwd: global.libs.ADMINLTE_ASSETS,
-                    src: [
-                        'css/*.min.css',
-                        'css/**/skin-blue.min.css',
-                        'img/**'
-                    ],
-                    dest: 'public/'
+                    src: ['css/*.min.css', 'css/**/skin-blue.min.css', 'img/**'],
+                    dest: global.base.UI_TMP
                 },
                 {
                     cwd: global.libs.ICHECK_ASSETS,
-                    src: [
-                        'square/blue.css',
-                        'square/blue.png',
-                        'flat/blue.css',
-                        'flat/blue.png'
-                    ],
-                    dest: 'public/css'
+                    src: ['square/blue.css', 'square/blue.png', 'flat/blue.css', 'flat/blue.png'],
+                    dest: global.base.UI_TMP + 'css'
+                },
+                {
+                    cwd: global.base.UI_TMP,
+                    src: ['**'],
+                    dest: global.base.PUBLIC_DIR
                 }
-                
             ]
         }
     })
