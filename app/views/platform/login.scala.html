@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-xs-4">
                             <div class="input-group">
-                                <input name="port" type="text" placeholder="5000" class="form-control">
+                                <input value="@UserForm.value("port")(userForm).getOrElse("5000")" name="port" type="text" placeholder="5000" class="form-control">
                             </div>
                         </div>
                     </div>

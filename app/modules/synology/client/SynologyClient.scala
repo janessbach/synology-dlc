@@ -6,14 +6,15 @@ import modules.synology.models.downloads.{DownloadStatus, Downloads}
 import platform.config.ConfigurationService
 import play.api.Logger
 import play.api.libs.json._
+import play.api.libs.ws.ahc.AhcCurlRequestLogger
 import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.utils.UriEncoding
 
 import scala.concurrent.{ExecutionContext, Future}
 
 class SynologyClientConfiguration @Inject()(config: ConfigurationService) {
-  val Ip = config hostIp
-  val Port = config hostPort
+  val Ip = config.hostIp
+  val Port = config.hostPort
 }
 
 class SynologyClient @Inject()(wsClient : WSClient,
@@ -74,15 +75,15 @@ class SynologyClient @Inject()(wsClient : WSClient,
       case _ => getReceiver
     }
 
-    val url = wsClient.url(ApiPrefix + uri)
+    val url = wsClient.url(ApiPrefix + uri).withRequestFilter(AhcCurlRequestLogger())
 
     currentReceiver.apply(url).map { response =>
       Json.parse(response.body).validate[A] match {
         case JsSuccess(value, path) =>
-          logger.info("[OK] requesting url" + url + ". With response: " + value.toString)
+          logger.info("[OK] requesting url" + uri)
           Some(value)
         case e: JsError =>
-          logger.error("[FAIL] requesting url" + url + ". With error: " + e.toString)
+          logger.error("[FAIL] requesting url" + uri + ". With error: " + e.toString)
           None
       }
     }
