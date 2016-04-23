@@ -8,6 +8,7 @@ import modules.core.controllers.CoreController
 import modules.core.notification.services.NotificationService
 import modules.dlc.models.RemoteFile
 import modules.dlc.services.{DlcExtractorService, RemoteFileServiceFactory}
+import modules.synology.models.downloads.Downloads
 import modules.synology.services.SynologyService
 import play.api.libs.json.{Json, _}
 import play.api.mvc.{Action, AnyContent, _}
@@ -40,7 +41,7 @@ class ApiController @Inject()(notificationService: NotificationService,
 
   def currentDownloads: Action[AnyContent] = BaseAction { implicit context =>
     synologyService.currentDownloads(context.user) map {
-      case downloads => Ok(Json.toJson(downloads))
+      case downloads : Downloads => Ok(Json.toJson(downloads))
       case _ => BadRequest
     }
   }
