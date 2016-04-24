@@ -1,15 +1,15 @@
 @()(implicit context: RequestContext[_])
 
 <div class="modal decrypted-dlc-files">
-    <div class="modal-dialog" style="height: calc(100% - 60px); overflow: hidden">
-        <div class="modal-content" style="height: 100%;">
+    <div class="modal-dialog file-modal">
+        <div class="modal-content file-modal-content">
             <div class="modal-header">
                 <button type="button" class="close cancel-file-download" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">@Messages("downloads.decryptedDlcFiles")</h4>
             </div>
-            <div class="modal-body" style="height: calc(100% - 120px); padding: 0">
+            <div class="modal-body file-modal-content__body">
                 <div class="table-responsive dlc-download-files">
                     <table class="table table-hover">
                         <thead>

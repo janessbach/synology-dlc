@@ -1,3 +1,17 @@
+.file-modal {
+    height: calc(100% - 60px);
+    overflow: hidden;
+}
+
+.file-modal-content {
+    height: 100%;
+}
+
+.file-modal-content__body {
+    height: calc(100% - 120px);
+    padding: 0;
+}
+
 .file-spinner {
     font-size: 50px;
     margin-top: -25px;
