@@ -20,9 +20,9 @@ class SynologyClientConfiguration @Inject()(config: ConfigurationService) {
 class SynologyClient @Inject()(wsClient : WSClient,
                                config: SynologyClientConfiguration)(implicit ec: ExecutionContext) extends Receivers {
 
-  private val ApiPrefix = "http://" + config.Ip + ":" + config.Port
-
   private val logger = Logger(getClass)
+
+  def ApiPrefix = "http://" + config.Ip + ":" + config.Port
 
   private def loginCall[A](username: String, password: String)(implicit reads: Reads[A]) = retrieve(
     uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${UriEncoding.encodePathSegment(username, "utf-8")}&passwd=${UriEncoding.encodePathSegment(password, "utf-8")}&session=DownloadStation&format=cookie"
