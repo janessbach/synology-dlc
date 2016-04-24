@@ -3,21 +3,26 @@ package modules.synology.client
 import com.google.inject.Inject
 import modules.core.auth.models.{LoginStatus, LogoutStatus}
 import modules.synology.models.downloads.{DownloadStatus, Downloads}
-import play.api.{Configuration, Logger}
+import platform.config.ConfigurationService
+import play.api.Logger
 import play.api.libs.json._
+import play.api.libs.ws.ahc.AhcCurlRequestLogger
 import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.utils.UriEncoding
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class SynologyClientConfiguration @Inject()(config: Configuration)
+class SynologyClientConfiguration @Inject()(config: ConfigurationService) {
+  val Ip = config.hostIp
+  val Port = config.hostPort
+}
 
 class SynologyClient @Inject()(wsClient : WSClient,
                                config: SynologyClientConfiguration)(implicit ec: ExecutionContext) extends Receivers {
 
-  private val ApiPrefix = "http://192.168.1.2:5000" // FIXME: Need to refer to the configuration!
-
   private val logger = Logger(getClass)
+
+  def ApiPrefix = "http://" + config.Ip + ":" + config.Port
 
   private def loginCall[A](username: String, password: String)(implicit reads: Reads[A]) = retrieve(
     uri = s"/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${UriEncoding.encodePathSegment(username, "utf-8")}&passwd=${UriEncoding.encodePathSegment(password, "utf-8")}&session=DownloadStation&format=cookie"
@@ -70,23 +75,21 @@ class SynologyClient @Inject()(wsClient : WSClient,
       case _ => getReceiver
     }
 
-    val url = wsClient.url(ApiPrefix + uri)
+    val url = wsClient.url(ApiPrefix + uri).withRequestFilter(AhcCurlRequestLogger())
 
     currentReceiver.apply(url).map { response =>
       Json.parse(response.body).validate[A] match {
         case JsSuccess(value, path) =>
-          logger.debug("[OK] requesting url" + url + ". With response: " + value.toString)
+          logger.info("[OK] requesting url" + uri)
           Some(value)
         case e: JsError =>
-          logger.error("[FAIL] requesting url" + url + ". With error: " + e.toString)
+          logger.error("[FAIL] requesting url" + uri + ". With error: " + e.toString)
           None
       }
     }
   }
 
 }
-
-class RequestException
 
 trait Receivers {
   type Receiver = WSRequest => Future[WSResponse]

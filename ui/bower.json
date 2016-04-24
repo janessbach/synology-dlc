@@ -1,6 +1,7 @@
 {
   "name": "synology-dlc",
   "dependencies": {
-    "admin-lte" : "2.3.3"
+    "admin-lte" : "2.3.3",
+    "jquery-graceful-websocket" : "0.1"
   }
 }

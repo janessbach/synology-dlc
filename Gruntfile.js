@@ -1,27 +1,31 @@
 module.exports = function (grunt) {
     'use strict';
 
-    global.dlc = {};
-    global.dlc.CONF = 'conf/';
-    global.dlc.PLATFORM_ASSETS = 'ui/assets/platform/';
-    global.dlc.DLC_ASSETS = 'ui/assets/dlc/';
+    global.base = {};
+    global.base.BOWER_COMPONENTS = 'ui/bower_components/';
+    global.base.CONF             = 'conf/';
+    global.base.NODE_MODULES     = 'node_modules/';
+    global.base.PUBLIC_DIR       = 'public/';
+    global.base.UI               = 'ui/';
+    global.base.UI_TMP           = 'ui/tmp/';
 
-    global.libs = {};
-    global.libs.BOOTSTRAP_ASSETS = 'ui/bower_components/admin-lte/bootstrap/';
-    global.libs.ADMINLTE_ASSETS = 'ui/bower_components/admin-lte/dist/';
-    global.libs.JQUERY_ASSETS = 'ui/bower_components/admin-lte/plugins/jQuery/';
-    global.libs.ICHECK_ASSETS = 'ui/bower_components/admin-lte/plugins/iCheck/';
-    global.libs.INPUTMASK_ASSETS = 'ui/bower_components/admin-lte/plugins/input-mask/';
+    global.libs                  = {};
+    global.libs.ADMINLTE_ASSETS  = global.base.BOWER_COMPONENTS + 'admin-lte/dist/';
+    global.libs.BOOTSTRAP_ASSETS = global.base.BOWER_COMPONENTS + 'admin-lte/bootstrap/';
+    global.libs.JQUERY_ASSETS    = global.base.BOWER_COMPONENTS + 'admin-lte/plugins/jQuery/';
+    global.libs.ICHECK_ASSETS    = global.base.BOWER_COMPONENTS + 'admin-lte/plugins/iCheck/';
+    global.libs.INPUTMASK_ASSETS = global.base.BOWER_COMPONENTS + 'admin-lte/plugins/input-mask/';
+    global.libs.WEBSOCKET_ASSETS = global.base.BOWER_COMPONENTS + 'jquery-graceful-websocket/';
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json')
-    });
+    global.libs.DLC_ASSETS       = global.base.UI               + 'assets/dlc/';
+    global.libs.PLATFORM_ASSETS  = global.base.UI               + 'assets/platform/';
+
+    grunt.initConfig({pkg: grunt.file.readJSON('package.json')});
 
     grunt.loadTasks('ui/grunt');
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('test', [
+    grunt.registerTask('dist', ['bower-install-simple', 'concat', 'sync']);
 
-    ]);
 };

@@ -9,7 +9,7 @@ import play.api.Logger
 import scala.util.{Failure, Success, Try}
 
 abstract class ConfigurationService[A] {
-  def get(key : String) : A
+  def get(key : String) : Option[A]
   def set(key : String, value : A) : A
   def save : Boolean
 }
@@ -25,7 +25,7 @@ class FileBasedConfigurationService(val file : File) extends ConfigurationServic
       throw ex
   }
 
-  override def get(key: String): ConfigValue = config getValue key
+  override def get(key: String): Option[ConfigValue] = Try(config getValue key).toOption
 
   override def set(key: String, value: ConfigValue): ConfigValue = {
     synchronized {

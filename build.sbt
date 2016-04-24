@@ -1,5 +1,3 @@
-import org.rbayer.GruntSbtPlugin._
-import GruntKeys._
 import play.twirl.sbt.Import.TwirlKeys._
 
 name := """synology-dlc"""
@@ -31,11 +29,29 @@ libraryDependencies ++= Seq(
   "de.leanovate.play-mockws" %% "play-mockws" % "2.5.0" % Test
 )
 
-gruntSettings
+watchSources := (watchSources.value --- baseDirectory.value / "public" ** "*").get
 
-gruntPath := "node_modules/grunt-cli/bin/grunt"
+def Grunt(base: File) = {
+  import play.sbt.PlayRunHook
+  import sbt._
+  object Grunt {
+    def apply(base: File): PlayRunHook = {
+      object GruntProcess extends PlayRunHook {
+        override def beforeStarted(): Unit = {
+          Process("grunt dist", base).run
+        }
+      }
+      GruntProcess
+    }
+  }
+  Grunt(base)
+}
 
-gruntTasks in Compile := Seq("bower-install-simple", "sync", "concat")
+PlayKeys.playRunHooks += Grunt(baseDirectory.value)
+
+sources in (Compile, doc) := Seq.empty
+
+publishArtifact in (Compile, packageDoc) := false
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 

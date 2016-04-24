@@ -45,6 +45,7 @@ form.cancel=Cancel
 # Login
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 login.description=Sign in to start your session
+login.ip=Synology host
 login.username=Username
 login.password=Password
 login.signIn=Sign In

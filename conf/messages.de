@@ -45,6 +45,7 @@ form.cancel=Abbrechen
 # Login
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 login.description=Melden Sie sich an, um Ihre Sitzung zu beginnen
+login.ip=Synology Server
 login.username=Benutzername
 login.password=Passwort
 login.signIn=Einloggen
