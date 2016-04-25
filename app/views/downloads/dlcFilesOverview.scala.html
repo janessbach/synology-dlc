@@ -1,0 +1,40 @@
+@()(implicit context: RequestContext[_])
+
+<div class="modal decrypted-dlc-files">
+    <div class="modal-dialog file-modal">
+        <div class="modal-content file-modal-content">
+            <div class="modal-header">
+                <button type="button" class="close cancel-file-download" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">@Messages("downloads.decryptedDlcFiles")</h4>
+            </div>
+            <div class="modal-body file-modal-content__body">
+                <div class="table-responsive dlc-download-files">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px">
+                                    <button type="button" class="btn btn-default btn-sm checkbox-toggle" title="@Messages("downloads.selectAll")"><i class="fa fa-square-o"></i>
+                                    </button>
+                                </th>
+                                <th style="width: 100px">@Messages("downloads.status")</th>
+                                <th>@Messages("downloads.filename")</th>
+                                <th>@Messages("downloads.url")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div class="overlay file-spinner__overlay">
+                                <i class="fa fa-refresh fa-spin file-spinner"></i>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left cancel-file-download" data-dismiss="modal">@Messages("form.cancel")</button>
+                <button type="button" class="btn btn-primary start-file-download">@Messages("downloads.start")</button>
+            </div>
+        </div>
+    </div>
+</div>

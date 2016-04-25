@@ -18,6 +18,7 @@ downloads.dlcFile.status.notAvailable=Nicht verfügbar
 downloads.dlcFile.upload=Hochladen
 downloads.dlcFile.upload.description=Laden Sie die DLC-Datei hier hoch.
 downloads.dlcFile.upload.title=Container-Upload
+downloads.acutalDownloads=Aktuelle Downloads
 downloads.filename=Dateiname
 downloads.selectAll=Alle selektieren/deselektieren
 downloads.start=Download starten
@@ -37,6 +38,7 @@ dashboard.title=Dashboard
 # Forms
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 form.submit=Abschicken
+form.cancel=Abbrechen
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

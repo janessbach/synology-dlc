@@ -18,6 +18,7 @@ downloads.dlcFile.status.notAvailable=Not available
 downloads.dlcFile.upload=Upload
 downloads.dlcFile.upload.description=Upload the dlc file here.
 downloads.dlcFile.upload.title=Container upload
+downloads.acutalDownloads=Acutal downloads
 downloads.filename=Filename
 downloads.selectAll=Select/unselect all
 downloads.start=Start download
@@ -37,6 +38,7 @@ dashboard.title=Dashboard
 # Forms
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 form.submit=Submit
+form.cancel=Cancel
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
