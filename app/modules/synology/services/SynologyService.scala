@@ -5,13 +5,11 @@ import modules.core.auth.models.{LoginStatus, LogoutStatus, User}
 import modules.core.controllers.RequestContext
 import modules.dlc.models.RemoteFile
 import modules.synology.client.SynologyClient
-import modules.synology.models.downloads.{DownloadStatus, Downloads}
-import platform.models.Download
+import modules.synology.models.downloads.Downloads
 
 import scala.concurrent.{ExecutionContext, Future}
 
 class SynologyService @Inject() (client : SynologyClient)(implicit ec: ExecutionContext) {
-
 
   def addDownloads[A](files: List[RemoteFile])(implicit context : RequestContext[A]): Future[Boolean] = {
     /**
@@ -24,15 +22,8 @@ class SynologyService @Inject() (client : SynologyClient)(implicit ec: Execution
     Future.sequence(files.grouped(50).map(processFiles).toList).map(_.forall(_ => true))
   }
 
-  // RETHINK ABOUT THIS DATA TYPE
-  def currentDownloads(user: User): Future[Option[List[Download]]] = client
+  def currentDownloads(user: User): Future[Downloads] = client
     .currentDownloads(user.loginStatus)
-    .map { downloads =>
-      if (downloads.success)
-        Option(downloads.files.map(file => Download(id = file.id, size = file.size, status = file.status, title = file.title)))
-      else
-        None
-    }
 
   def login(username: String, password: String) : Future[LoginStatus] =
     client.login(username, password)
