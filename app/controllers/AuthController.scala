@@ -19,14 +19,11 @@ class AuthController @Inject()(authService: AuthService,
                                configuration: ConfigurationService)
                               (implicit exec: ExecutionContext) extends CoreController with Constants {
 
+  import UserForm._
+
   def index = BaseAction(userCheck = false) { implicit context =>
-    val defaultValues = UserForm.formMapping.bind(
-      Map(
-        UserForm.Ip -> configuration.hostIp,
-        UserForm.Port -> configuration.hostPort.toString
-      )
-    )
-    Future.successful(Ok(views.html.platform.login(Some(defaultValues))))
+    val default = fromConfiguration(configuration)
+    Future.successful(Ok(views.html.platform.login(Some(default))))
   }
 
   def login : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
@@ -36,7 +33,7 @@ class AuthController @Inject()(authService: AuthService,
         Future.successful(BadRequest(html))
       },
       userData => {
-        saveToConfiguration(userData)
+        setConfiguration(userData)
         authService.login(userData.name, userData.password).map {
           case user @ User(username,loginStatus) if loginStatus.success =>
             redirect(controllers.routes.HomeController.dashboard())
@@ -50,7 +47,7 @@ class AuthController @Inject()(authService: AuthService,
     )
   }
 
-  private def saveToConfiguration(userData: UserForm) = {
+  private def setConfiguration(userData : UserForm): Unit = {
     configuration.set(ConfigHostName, ConfigValueFactory fromAnyRef userData.ip)
     configuration.set(ConfigHostPort, ConfigValueFactory fromAnyRef userData.port)
   }
@@ -71,6 +68,13 @@ object UserForm {
 
   def value(key : String)(userForm: Option[Form[UserForm]]): Option[String] =
     userForm.flatMap(_.data.get(key))
+
+  def fromConfiguration(service : ConfigurationService) : Form[UserForm] = UserForm.formMapping.bind(
+    Map(
+      UserForm.Ip -> service.hostIp,
+      UserForm.Port -> service.hostPort.toString
+    )
+  )
 
   val formMapping = Form(
     mapping(

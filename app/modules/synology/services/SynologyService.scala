@@ -5,7 +5,6 @@ import modules.core.auth.models.{LoginStatus, LogoutStatus, User}
 import modules.core.controllers.RequestContext
 import modules.dlc.models.RemoteFile
 import modules.synology.client.SynologyClient
-import modules.synology.models.downloads.{DownloadStatus, Downloads}
 import platform.models.Download
 
 import scala.concurrent.{ExecutionContext, Future}
