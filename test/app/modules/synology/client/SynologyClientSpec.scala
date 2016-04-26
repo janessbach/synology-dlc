@@ -2,7 +2,8 @@ package app.modules.synology.client
 
 import mixins.NoApplication
 import mockws.MockWS
-import modules.synology.client.{SynologyClient, SynologyClientConfiguration}
+import modules.synology.client.SynologyClient
+import platform.config.ConfigurationService
 import play.api.mvc.{Action, Results}
 
 class SynologyClientSpec extends NoApplication {
@@ -11,7 +12,7 @@ class SynologyClientSpec extends NoApplication {
     val SuccessResponse = s"""{ "esearchresult": { "idlist": [""] } }"""
     val ErrorResponse = """{ "malformed" : "noidea" }"""
 
-    val clientApiConfiguration = mock[SynologyClientConfiguration]
+    val clientApiConfiguration = mock[ConfigurationService]
 
     val ws = MockWS {
       case ("GET", url) if url == "" => Action { Results.Ok(SuccessResponse).as("application/json") }
