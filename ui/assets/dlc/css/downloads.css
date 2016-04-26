@@ -1,3 +1,39 @@
-.downloads-controls {
-    padding: 5px;
+.file-modal {
+    height: calc(100% - 60px);
+    overflow: hidden;
+}
+
+.file-modal-content {
+    height: 100%;
+}
+
+.file-modal-content__body {
+    height: calc(100% - 120px);
+    padding: 0;
+}
+
+.file-spinner {
+    font-size: 50px;
+    margin-top: -25px;
+    margin-left: -25px;
+    position: absolute;
+    top: 50%;
+    color: #6d6875;
+}
+
+.file-spinner__overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}
+
+.dlc-download-files {
+    height: 100%;
+    overflow: auto;
+}
+
+.dlc-download-file__checkbox {
+    padding-left: 13px !important;
 }

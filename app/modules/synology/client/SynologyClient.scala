@@ -32,7 +32,8 @@ class SynologyClient @Inject()(wsClient : WSClient,
     postData = Some(Map(
       "version" -> Seq("1"),
       "api"     -> Seq("SYNO.DownloadStation.Task"),
-      "method"  -> Seq("list")
+      "method"  -> Seq("list"),
+      "additional" -> Seq("transfer")
     )),
     loginStatus = Some(loginStatus)
   )

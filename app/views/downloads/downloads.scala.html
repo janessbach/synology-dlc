@@ -1,0 +1,19 @@
+@import views.html.platform.main
+@import views.html.downloads.dlcUpload
+@import views.html.downloads.dlcFilesOverview
+@import views.html.downloads.downloadFilesOverview
+
+@()(implicit context: RequestContext[_])
+
+@main(Messages("downloads.title")) {
+
+    <div class="row">
+        @dlcUpload()
+    </div>
+
+    <div class="row">
+        @downloadFilesOverview()
+    </div>
+
+    @dlcFilesOverview()
+}
