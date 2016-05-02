@@ -1,4 +1,4 @@
-@import views.html.platform.includes.includeHead
+@import views.html.platform.includes.{ includeHead, includeFlashMessages }
 @import _root_.platform.utils.FormUtils
 
 @(userForm: Option[Form[UserForm]] = None)(implicit context: RequestContext[_])
@@ -9,6 +9,7 @@
         @includeHead(Messages("login.title"))
     </head>
     <body class="hold-transition login-page">
+        @includeFlashMessages()
         <div class="login-box">
             <div class="login-logo">@Html(Messages("application.title"))</div>
             <div class="login-box-body">

@@ -8,8 +8,10 @@ import modules.core.auth.services.AuthService
 import modules.core.controllers.CoreController
 import platform.config.{ConfigurationService, Constants}
 import platform.services.PlatformAuthService
+import platform.utils.FlashMessage
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.i18n.Messages
 import play.api.mvc.{Action, AnyContent}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -39,12 +41,16 @@ class AuthController @Inject()(authService: AuthService,
         saveToConfiguration(userData)
         authService.login(userData.name, userData.password).map {
           case user @ User(username,loginStatus) if loginStatus.success =>
-            redirect(controllers.routes.HomeController.dashboard())
-              .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString)
-              .flashing()     // user logged in
+            FlashMessage.success(
+              redirect(controllers.routes.HomeController.dashboard())
+                .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString),
+              Messages("login.success")
+            )
           case _ =>
-            redirect(controllers.routes.AuthController.index())
-              .flashing()     // Could not login with credentials
+            FlashMessage.error(
+              redirect(controllers.routes.AuthController.index()),
+              Messages("login.error")
+            )
         }
       }
     )

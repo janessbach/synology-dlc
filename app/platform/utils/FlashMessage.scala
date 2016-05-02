@@ -13,13 +13,13 @@ abstract class FlashMessage(logLevel : LogLevel, message : String) {
   def cssClass : String
 }
 case class InfoMessage(message : String) extends FlashMessage(logLevel = MessageInfo, message) {
-  def cssClass = "notice"
+  def cssClass = "alert-info"
 }
 case class ErrorMessage(message : String) extends FlashMessage(logLevel = MessageError, message) {
-  def cssClass = "error"
+  def cssClass = "alert-danger"
 }
 case class SuccessMessage(message : String) extends FlashMessage(logLevel = MessageSuccess, message) {
-  def cssClass = "success"
+  def cssClass = "alert-success"
 }
 
 object FlashMessage {

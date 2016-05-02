@@ -1,0 +1,14 @@
+@import _root_.platform.utils.FlashMessage
+
+@()(implicit context: RequestContext[_])
+
+@FlashMessage.getMessages(context).map { flashMessages =>
+    @flashMessages.map { message =>
+        <div class="alert @message.cssClass">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @message.userMessage
+        </div>
+    }
+}

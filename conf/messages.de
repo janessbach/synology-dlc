@@ -17,6 +17,7 @@ downloads.dlcFile.status.checking=Prüfend
 downloads.dlcFile.status.notAvailable=Nicht verfügbar
 downloads.dlcFile.upload=Hochladen
 downloads.dlcFile.upload.description=Laden Sie die DLC-Datei hier hoch.
+downloads.dlcFile.upload.success=Dateien erfolgreich hinzugefügt.
 downloads.dlcFile.upload.title=Container-Upload
 downloads.acutalDownloads=Aktuelle Downloads
 downloads.filename=Dateiname
@@ -50,6 +51,8 @@ login.username=Benutzername
 login.password=Passwort
 login.signIn=Einloggen
 login.title=Anmeldung
+login.success=Anmeldung erfolgreich
+login.error=Fehler bei der Anmeldung. Versuchen Sie es erneut.
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
