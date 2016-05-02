@@ -69,9 +69,6 @@ object UserForm {
   val Password = "password"
   val Port = "port"
 
-  def value(key : String)(userForm: Option[Form[UserForm]]): Option[String] =
-    userForm.flatMap(_.data.get(key))
-
   val formMapping = Form(
     mapping(
       Ip -> text,

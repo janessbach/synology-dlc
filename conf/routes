@@ -14,6 +14,7 @@ GET     /api/downloads/current      controllers.ApiController.currentDownloads
 GET     /dashboard                  controllers.HomeController.dashboard
 GET     /downloads                  controllers.HomeController.downloads
 GET     /settings                   controllers.SettingsController.settings
+POST    /settings/synology          controllers.SettingsController.synologySettings
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

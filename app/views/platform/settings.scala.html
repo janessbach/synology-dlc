@@ -1,4 +1,4 @@
-@()(implicit context: RequestContext[_])
+@(synologySettingsForm: Option[Form[SynologySettingsForm]] = None)(implicit context: RequestContext[_])
 
 @main(Messages("settings.title")) {
 
@@ -10,7 +10,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="active tab-pane" id="settings">
-                        @synologySettings()
+                        @synologySettings(synologySettingsForm)
                     </div>
                 </div>
             </div>
