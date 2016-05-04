@@ -47,8 +47,8 @@ object SynologySettingsForm {
   def fromConfiguration(service : ConfigurationService) : Form[SynologySettingsForm] =
     SynologySettingsForm.formMapping.bind(
       Map(
-        UserForm.Ip -> service.hostIp,
-        UserForm.Port -> service.hostPort.toString
+        SynologySettingsForm.Ip -> service.hostIp,
+        SynologySettingsForm.Port -> service.hostPort.toString
       )
     )
 
