@@ -2,13 +2,12 @@
 
 @()(implicit context: RequestContext[_])
 
-@FlashMessage.getMessages(context).map { flashMessages =>
-    @flashMessages.map { message =>
-        <div class="alert @message.cssClass">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            @message.userMessage
-        </div>
-    }
+@FlashMessage.flashMessages.map { message =>
+    <div class="alert @message.level">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @message.message
+    </div>
 }
+

@@ -8,10 +8,9 @@ import modules.core.auth.services.AuthService
 import modules.core.controllers.CoreController
 import platform.config.{ConfigurationService, Constants}
 import platform.services.PlatformAuthService
-import platform.utils.FlashMessage
+import platform.utils.ResultUtils._
 import play.api.data.Form
 import play.api.data.Forms._
-import play.api.i18n.Messages
 import play.api.mvc.{Action, AnyContent}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -28,6 +27,7 @@ class AuthController @Inject()(authService: AuthService,
         UserForm.Port -> configuration.hostPort.toString
       )
     )
+
     Future.successful(Ok(views.html.platform.login(Some(defaultValues))))
   }
 
@@ -41,16 +41,10 @@ class AuthController @Inject()(authService: AuthService,
         saveToConfiguration(userData)
         authService.login(userData.name, userData.password).map {
           case user @ User(username,loginStatus) if loginStatus.success =>
-            FlashMessage.success(
-              redirect(controllers.routes.HomeController.dashboard())
-                .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString),
-              Messages("login.success")
-            )
-          case _ =>
-            FlashMessage.error(
-              redirect(controllers.routes.AuthController.index()),
-              Messages("login.error")
-            )
+            redirect(controllers.routes.HomeController.dashboard())
+              .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString)
+              .flashing(LoginSuccessful)
+          case _ => redirect(controllers.routes.AuthController.index()).flashing(LoginError)
         }
       }
     )
