@@ -1,51 +1,49 @@
 package platform.utils
 
 import modules.core.controllers.RequestContext
-import play.api.mvc.Result
+import play.api.libs.json.{JsResult, Json, Reads, Writes}
 
-abstract class LogLevel(sessionKey : String)
-case object MessageInfo extends LogLevel(FlashMessage.InfoMessage)
-case object MessageSuccess extends LogLevel(FlashMessage.SuccessMessage)
-case object MessageError extends LogLevel(FlashMessage.ErrorMessage)
-
-abstract class FlashMessage(logLevel : LogLevel, message : String) {
-  def userMessage = message
-  def cssClass : String
-}
-case class InfoMessage(message : String) extends FlashMessage(logLevel = MessageInfo, message) {
-  def cssClass = "notice"
-}
-case class ErrorMessage(message : String) extends FlashMessage(logLevel = MessageError, message) {
-  def cssClass = "error"
-}
-case class SuccessMessage(message : String) extends FlashMessage(logLevel = MessageSuccess, message) {
-  def cssClass = "success"
+trait MessageLevel {
+  def level : String
 }
 
-object FlashMessage {
+object Success extends MessageLevel {
+  override def level : String = "success"
+}
 
-  val ErrorMessage = "flashing.error"
-  val SuccessMessage = "flashing.success"
-  val InfoMessage = "flashing.info"
+object Warning extends MessageLevel {
+  override def level : String = "warning"
+}
 
-  def createFlashing(key : String, message: String) : FlashMessage = {
-    key match {
-      case ErrorMessage => new ErrorMessage(message)
-      case SuccessMessage => new SuccessMessage(message)
-      case InfoMessage => new InfoMessage(message)
-      case _ => new InfoMessage(message)
+object Error extends MessageLevel {
+  override def level : String = "danger"
+}
+
+case class FlashMessage(title: String, message : String, level : String)
+
+case object FlashMessage {
+
+  implicit val reads : Reads[FlashMessage] = Json.reads[FlashMessage]
+  implicit val writes : Writes[FlashMessage] = Json.writes[FlashMessage]
+
+  def flashMessages[A](implicit context : RequestContext[A]) : List[FlashMessage] = {
+    val flashMap: Map[String, String] = context.request.flash.data
+    flashMap.keySet.map { key =>
+     Json.fromJson(Json.parse(flashMap(key)))(reads)
+    } collect {
+      case jsResult : JsResult[FlashMessage] if jsResult.isSuccess => jsResult.get
     }
+  }.toList
+
+}
+
+abstract class Message(val titleKey: String, val messageKey: String)(level: MessageLevel = Success) {
+  def fromMessageFile[A](implicit context: RequestContext[A]) = (context.messages(titleKey), context.messages(messageKey))
+
+  def toJson[A](implicit context: RequestContext[A]) = {
+    val (title, message) = fromMessageFile
+    Json.stringify(Json.toJson(FlashMessage(title, message, level.level)))
   }
 
-  def getMessages[A](requestContext: RequestContext[A]) : Option[List[FlashMessage]] = {
-    val items : Map[String, String] = requestContext.request.flash.data
-    Option(items.map {
-      case (key : String, message: String) => createFlashing(key, message)
-    }.toList)
-  }
-
-  def info(result : Result, message : String)     = result.flashing(InfoMessage -> message)
-  def error(result : Result, message : String)    = result.flashing(ErrorMessage -> message)
-  def success(result : Result, message : String)  = result.flashing(SuccessMessage -> message)
-
+  def key : String = String.valueOf((titleKey + messageKey).hashCode)
 }

@@ -1,11 +1,13 @@
-@()(implicit context: RequestContext[_])
+@import _root_.platform.utils.FormUtils
 
-<form class="form-horizontal">
+@(synologySettings: Option[Form[SynologySettingsForm]] = None)(implicit context: RequestContext[_])
+
+<form class="form-horizontal" action="@controllers.routes.SettingsController.synologySettings" method="post">
     <div class="form-group">
         <label for="ipAddress" class="col-sm-2 control-label">@Messages("settings.ipAddress")</label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="ipAddress" data-inputmask="'alias': 'ip'" data-mask>
+            <input type="text" class="form-control" value="@FormUtils.value("ip")(synologySettings).getOrElse("")" name="ip" data-inputmask="'alias': 'ip'" data-mask>
         </div>
     </div>
 
@@ -13,7 +15,7 @@
         <label for="port" class="col-sm-2 control-label">@Messages("settings.port")</label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="port">
+            <input type="text" class="form-control" value="@FormUtils.value("port")(synologySettings).getOrElse("")" name="port">
         </div>
     </div>
 

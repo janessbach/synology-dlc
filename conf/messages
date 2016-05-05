@@ -48,6 +48,10 @@ login.username=Username
 login.password=Password
 login.signIn=Sign In
 login.title=Login
+login.successful.title=Login successful
+login.successful.message=You were successfully logged in.
+login.error.title=Login failed
+login.error.message=You could not be logged in. Try again.
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

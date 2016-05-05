@@ -48,6 +48,10 @@ login.username=Benutzername
 login.password=Passwort
 login.signIn=Einloggen
 login.title=Anmeldung
+login.successful.title=Anmeldung erfolgreich
+login.successful.message=Sie wurden erfolgreich angemeldet.
+login.error.title=Fehler bei der Anmeldung.
+login.error.message=Sie konnten nicht angemeldet wurden. Versuchen Sie es erneut.
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

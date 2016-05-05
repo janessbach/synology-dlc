@@ -11,6 +11,8 @@ case class RequestContext[+A](request: EnrichedRequest[A],
 
   implicit val lang : Lang = request.messages.lang
 
+  val messages = request.messages
+
   override def toString =
     s"""=================
        |${request.method} ${request.path}
