@@ -7,10 +7,9 @@ import modules.core.auth.models.User
 import modules.core.auth.services.AuthService
 import modules.core.controllers.CoreController
 import platform.config.{ConfigurationService, Constants}
+import platform.models.UserForm
 import platform.services.PlatformAuthService
 import platform.utils.ResultUtils._
-import play.api.data.Form
-import play.api.data.Forms._
 import play.api.mvc.{Action, AnyContent}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -20,15 +19,10 @@ class AuthController @Inject()(authService: AuthService,
                                configuration: ConfigurationService)
                               (implicit exec: ExecutionContext) extends CoreController with Constants {
 
-  def index = BaseAction(userCheck = false) { implicit context =>
-    val defaultValues = UserForm.formMapping.bind(
-      Map(
-        UserForm.Ip -> configuration.hostIp,
-        UserForm.Port -> configuration.hostPort.toString
-      )
-    )
 
-    Future.successful(Ok(views.html.platform.login(Some(defaultValues))))
+  def index = BaseAction(userCheck = false) { implicit context =>
+    val default = UserForm.fromConfiguration(configuration)
+    Future.successful(Ok(views.html.platform.login(Some(default))))
   }
 
   def login : Action[AnyContent] = BaseAction(userCheck = false) { implicit context =>
@@ -38,7 +32,7 @@ class AuthController @Inject()(authService: AuthService,
         Future.successful(BadRequest(html))
       },
       userData => {
-        saveToConfiguration(userData)
+        setConfiguration(userData)
         authService.login(userData.name, userData.password).map {
           case user @ User(username,loginStatus) if loginStatus.success =>
             redirect(controllers.routes.HomeController.dashboard())
@@ -50,7 +44,7 @@ class AuthController @Inject()(authService: AuthService,
     )
   }
 
-  private def saveToConfiguration(userData: UserForm) = {
+  private def setConfiguration(userData : UserForm): Unit = {
     configuration.set(ConfigHostName, ConfigValueFactory fromAnyRef userData.ip)
     configuration.set(ConfigHostPort, ConfigValueFactory fromAnyRef userData.port)
   }
@@ -61,20 +55,3 @@ class AuthController @Inject()(authService: AuthService,
 
 }
 
-case class UserForm(ip: String, port : Int, name: String, password: String)
-
-object UserForm {
-  val Ip = "ip"
-  val Username = "username"
-  val Password = "password"
-  val Port = "port"
-
-  val formMapping = Form(
-    mapping(
-      Ip -> text,
-      Port -> number,
-      Username -> text,
-      Password -> text
-    )(UserForm.apply)(UserForm.unapply)
-  )
-}

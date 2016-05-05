@@ -38,7 +38,7 @@ def Grunt(base: File) = {
     def apply(base: File): PlayRunHook = {
       object GruntProcess extends PlayRunHook {
         override def beforeStarted(): Unit = {
-          Process("grunt dist", base).run
+          Process("./node_modules/grunt/bin/grunt dist", base).run
         }
       }
       GruntProcess

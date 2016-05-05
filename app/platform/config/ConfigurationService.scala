@@ -2,6 +2,7 @@ package platform.config
 
 import java.io.File
 
+import com.google.inject.{Inject, Singleton}
 import modules.core.config.FileBasedConfigurationService
 
 object FileProvider {
@@ -15,7 +16,8 @@ object FileProvider {
   * How to use:
   *    configurationService.set("user", ConfigValueFactory.fromAnyRef(context.user.asJsonString))
   */
-class ConfigurationService extends FileBasedConfigurationService(file = FileProvider.configurationFile) with Constants {
+@Singleton
+class ConfigurationService @Inject()() extends FileBasedConfigurationService(file = FileProvider.configurationFile) with Constants {
 
   def getAs[A](key : String) : Option[A] = get(key).map(_.unwrapped().asInstanceOf[A])
 

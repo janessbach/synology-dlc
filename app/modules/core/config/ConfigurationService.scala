@@ -2,6 +2,7 @@ package modules.core.config
 
 import java.io.File
 
+import com.google.inject.Singleton
 import com.typesafe.config.{Config, ConfigFactory, ConfigRenderOptions, ConfigValue}
 import org.apache.commons.io.FileUtils
 import play.api.Logger
@@ -14,11 +15,14 @@ abstract class ConfigurationService[A] {
   def save : Boolean
 }
 
+@Singleton
 class FileBasedConfigurationService(val file : File) extends ConfigurationService[ConfigValue] {
 
   private val logger = Logger(getClass)
 
-  private var config: Config = Try(ConfigFactory.parseFile(file)) match {
+  private var config: Config = init
+
+  private def init = Try(ConfigFactory.parseFile(file)) match {
     case Success(s) => s
     case Failure(ex) =>
       logger.error("could not initialize the configuration file", ex)
