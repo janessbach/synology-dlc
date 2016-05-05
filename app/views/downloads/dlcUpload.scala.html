@@ -1,26 +1,8 @@
 @()(implicit context: RequestContext[_])
 
-<div class="col-md-6">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">@Messages("downloads.dlcFile.upload.title")</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-            </div>
-        </div>
-        <form class="dlcFileForm" enctype="multipart/form-data">
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="dlc-file">@Messages("downloads.dlcFile")</label>
-                    <input type="file" name="dlc-file">
-
-                    <p class="help-block">@Messages("downloads.dlcFile.upload.description")</p>
-                </div>
-            </div>
-            <div class="box-footer">
-                <button type="button" class="btn btn-primary pull-right decrypt-dlc-file">@Messages("downloads.dlcFile.upload")</button>
-            </div>
-        </form>
-    </div>
-</div>
+<form class="dlc-file-form" enctype="multipart/form-data">
+    <input type="file" name="dlc-file"/>
+    <a class="btn btn-app bg-light-blue decrypt-dlc-file" title="@Messages("downloads.dlcFile.upload")">
+        <i class="fa fa-upload"></i>
+    </a>
+</form>

@@ -21,11 +21,15 @@
     }
 
     function registerDecryptEvent(downloadHandler) {
-        $('.decrypt-dlc-file').on('click', function () {
-            var formData = new FormData($('.dlcFileForm')[0]);
+        $('input[name="dlc-file"]').change(function() {
+            var formData = new FormData($('.dlc-file-form')[0]);
             downloadHandler.decryptFile(formData, createFileEntries);
             $('.decrypted-dlc-files').modal('show');
             $('.file-spinner__overlay').show();
+        });
+
+        $('.decrypt-dlc-file').on('click', function () {
+            $('input[name="dlc-file"]').click();
         });
     }
 

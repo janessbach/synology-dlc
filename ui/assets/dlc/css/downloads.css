@@ -37,3 +37,23 @@
 .dlc-download-file__checkbox {
     padding-left: 13px !important;
 }
+
+.dlc-file-form{
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+.dlc-file-form input {
+    display: none;
+}
+
+.decrypt-dlc-file {
+    height: 75px;
+    width: 75px;
+    text-align: center;
+    line-height: 70px;
+}
+
+.decrypt-dlc-file .fa {
+    font-size: 40px;
+}
