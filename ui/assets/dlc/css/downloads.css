@@ -39,10 +39,8 @@
 }
 
 .dlc-file-form{
-    display: block;
-    margin-bottom: 20px;
-    margin-left: 15px;
-    border-radius: 2px;
+    margin-bottom: 15px;
+    margin-left: 5px;
 }
 
 .dlc-file-form input {
@@ -50,12 +48,12 @@
 }
 
 .decrypt-dlc-file {
-    cursor: pointer;
-    border-radius: 2px;
-    display: block;
-    height: 90px;
-    width: 90px;
+    height: 75px;
+    width: 75px;
     text-align: center;
-    font-size: 45px;
-    line-height: 90px;
+    line-height: 70px;
+}
+
+.decrypt-dlc-file .fa {
+    font-size: 40px;
 }

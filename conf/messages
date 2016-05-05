@@ -10,7 +10,6 @@ application.title.browserTab=Synology DLC - {0}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Downloads
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-downloads.dlcFile=DLC-File
 downloads.decryptedDlcFiles=Decrypted files
 downloads.dlcFile.status.available=Available
 downloads.dlcFile.status.checking=Checking
