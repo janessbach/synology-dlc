@@ -16,7 +16,7 @@ object Warning extends MessageLevel {
 }
 
 object Error extends MessageLevel {
-  override def level : String = "error"
+  override def level : String = "danger"
 }
 
 case class FlashMessage(title: String, message : String, level : String)
