@@ -1,4 +1,4 @@
-@import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation }
+@import views.html.platform.includes.{ includeHead, includeHeader, includeNavigation, includeFlashMessages }
 
 @(title: String)(content: Html)(implicit context: RequestContext[_])
 <!DOCTYPE html>
@@ -11,6 +11,7 @@
             @includeHeader()
             @includeNavigation()
             <div class="content-wrapper">
+                @includeFlashMessages()
                 <section class="content-header">
                     <h1>@title</h1>
                     <ol class="breadcrumb">

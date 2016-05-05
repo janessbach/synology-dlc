@@ -17,6 +17,7 @@ downloads.dlcFile.status.checking=Checking
 downloads.dlcFile.status.notAvailable=Not available
 downloads.dlcFile.upload=Upload
 downloads.dlcFile.upload.description=Upload the dlc file here.
+downloads.dlcFile.upload.success=Files successfully added.
 downloads.dlcFile.upload.title=Container upload
 downloads.acutalDownloads=Acutal downloads
 downloads.filename=Filename
@@ -50,6 +51,10 @@ login.username=Username
 login.password=Password
 login.signIn=Sign In
 login.title=Login
+login.successful.title=Login successful
+login.successful.message=You were successfully logged in.
+login.error.title=Login failed
+login.error.message=You could not be logged in. Try again.
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

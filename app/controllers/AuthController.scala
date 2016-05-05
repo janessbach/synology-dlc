@@ -9,6 +9,7 @@ import modules.core.controllers.CoreController
 import platform.config.{ConfigurationService, Constants}
 import platform.models.UserForm
 import platform.services.PlatformAuthService
+import platform.utils.ResultUtils._
 import play.api.mvc.{Action, AnyContent}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -36,10 +37,8 @@ class AuthController @Inject()(authService: AuthService,
           case user @ User(username,loginStatus) if loginStatus.success =>
             redirect(controllers.routes.HomeController.dashboard())
               .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString)
-              .flashing()     // user logged in
-          case _ =>
-            redirect(controllers.routes.AuthController.index())
-              .flashing()     // Could not login with credentials
+              .flashing(LoginSuccessful)
+          case _ => redirect(controllers.routes.AuthController.index()).flashing(LoginError)
         }
       }
     )
