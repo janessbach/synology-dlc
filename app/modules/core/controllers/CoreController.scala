@@ -3,13 +3,16 @@ package modules.core.controllers
 import com.google.inject.Inject
 import modules.core.auth.models.User
 import modules.core.auth.services.AuthService
+import modules.core.message.services.FlashMessageServiceImplicits
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.{Action, _}
 
 import scala.async.Async.{async, await}
 import scala.concurrent.{ExecutionContext, Future}
 
-class CoreController(implicit ec: ExecutionContext) extends Controller with I18nSupport {
+class CoreController(implicit ec: ExecutionContext) extends
+  Controller with I18nSupport
+  with FlashMessageServiceImplicits {
 
   @Inject()
   val messagesApi: MessagesApi = null

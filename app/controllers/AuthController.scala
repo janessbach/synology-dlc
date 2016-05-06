@@ -9,7 +9,6 @@ import modules.core.controllers.CoreController
 import platform.config.{ConfigurationService, Constants}
 import platform.models.UserForm
 import platform.services.PlatformAuthService
-import platform.utils.ResultUtils._
 import play.api.mvc.{Action, AnyContent}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -18,7 +17,6 @@ import scala.concurrent.{ExecutionContext, Future}
 class AuthController @Inject()(authService: AuthService,
                                configuration: ConfigurationService)
                               (implicit exec: ExecutionContext) extends CoreController with Constants {
-
 
   def index = BaseAction(userCheck = false) { implicit context =>
     val default = UserForm.fromConfiguration(configuration)
@@ -37,8 +35,8 @@ class AuthController @Inject()(authService: AuthService,
           case user @ User(username,loginStatus) if loginStatus.success =>
             redirect(controllers.routes.HomeController.dashboard())
               .addingToSession(PlatformAuthService.UserSessionKey -> user.asJsonString)
-              .flashing(LoginSuccessful)
-          case _ => redirect(controllers.routes.AuthController.index()).flashing(LoginError)
+              .message(LoginSuccess)
+          case _ => redirect(controllers.routes.AuthController.index()).message(LoginError)
         }
       }
     )
@@ -50,7 +48,9 @@ class AuthController @Inject()(authService: AuthService,
   }
 
   def logout : Action[AnyContent] = BaseAction { implicit context =>
-    authService.logout(context.user).map(_ => redirect(controllers.routes.AuthController.login()).withNewSession)
+    authService.logout(context.user).map(state =>
+      redirect(controllers.routes.AuthController.login()).withNewSession
+    )
   }
 
 }
