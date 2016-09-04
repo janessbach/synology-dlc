@@ -2,7 +2,9 @@ FROM ubuntu:14.04
 
 MAINTAINER Jan-Gerrit Essbach "essbach@imoveit.de"
 
-RUN apt-get install -y software-properties-common unzip wget git
+RUN apt-get -y install software-properties-common
+RUN apt-get install unzip
+RUN apt-get install -y wget git
 
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
