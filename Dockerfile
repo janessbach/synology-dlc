@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Jan Essbach <essbach@imoveit.de>
 
 RUN apt-get update
-RUN apt-get install -y software-properties-common python-software-properties
+RUN apt-get install -y software-properties-common python-software-properties npm nodejs
 
 RUN DEBIAN_FRONTEND=noninteractivei \
     && add-apt-repository -y ppa:webupd8team/java \
