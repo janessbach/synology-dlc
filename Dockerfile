@@ -2,7 +2,7 @@ FROM ingensi/oracle-jdk
 
 MAINTAINER Jan Essbach <essbach@imoveit.de>
 
-RUN yum install -y unzip
+RUN yum install -y unzip git
 
 RUN curl -O http://downloads.typesafe.com/typesafe-activator/1.3.6/typesafe-activator-1.3.6.zip
 
