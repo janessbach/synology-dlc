@@ -1,40 +1,21 @@
-FROM ubuntu:15.04
-MAINTAINER Jan-Gerrit Essbach "essbach@imoveit.de"
+FROM ingensi/oracle-jdk
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update && \
-    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer && \
-    apt-get clean
-    
-RUN apt-get -y install software-properties-common
-RUN apt-get install unzip
-RUN apt-get install -y wget git
+MAINTAINER Jan Essbach <essbach@imoveit.de>
 
-RUN \
-  wget https://dl.bintray.com/sbt/debian/sbt-0.13.6.deb && \
-  dpkg -i sbt-0.13.6.deb && \
-  apt-get update && \
-  sudo apt-get install -y sbt
+RUN yum update -y && yum install -y unzip
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+RUN curl -O http://downloads.typesafe.com/typesafe-activator/1.3.6/typesafe-activator-1.3.6.zip
 
-RUN \
-  cd /usr/src && \
-  git clone https://github.com/janessbach/synology-dlc && \
-  cd synology-dlc && \
-  sbt dist
+RUN unzip typesafe-activator-1.3.6.zip -d / && rm typesafe-activator-1.3.6.zip && chmod a+x /activator-1.3.6/activator
 
-RUN mkdir -p /usr/src/app
+ENV PATH $PATH:/activator-1.3.6
 
-RUN mv /usr/src/synology-dlc/target/universal/synology-dlc-1.0-SNAPSHOT.zip /usr/src/app
+RUN mkdir /app && \
+	cd /app && \
+	git clone https://github.com/janessbach/synology-dlc
 
-RUN cd /usr/src/app && \
-    unzip synology-dlc-1.0-SNAPSHOT.zip && \
-    rm *.zip
+WORKDIR /app
 
-EXPOSE 9217
-CMD /usr/src/app/synology-dlc-1.0-SNAPSHOT/bin/synology-dlc -Dhttp.port=9217
+EXPOSE 9000
+
+CMD ["activator", "run"]
