@@ -26,8 +26,6 @@ RUN mkdir /app && \
 
 EXPOSE 9000
 
-WORKDIR /app
-
-RUN cd /app
+WORKDIR /app/synology-dlc
 
 CMD ["activator", "run"]
