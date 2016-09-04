@@ -24,8 +24,10 @@ RUN mkdir /app && \
 	cd /app && \
 	git clone https://github.com/janessbach/synology-dlc
 
+EXPOSE 9000
+
 WORKDIR /app
 
-EXPOSE 9000
+RUN cd /app
 
 CMD ["activator", "run"]
