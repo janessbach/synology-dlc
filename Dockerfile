@@ -1,6 +1,14 @@
-FROM ksdn117/oracle-jdk
-
+FROM ubuntu:latest
 MAINTAINER Jan Essbach <essbach@imoveit.de>
+
+RUN apt-get update
+RUN apt-get install -y software-properties-common python-software-properties
+
+RUN DEBIAN_FRONTEND=noninteractivei \
+    && add-apt-repository -y ppa:webupd8team/java \
+    && apt-get -y update \
+    && yes | apt-get install oracle-java8-installer
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 ENV VERSION 1.3.6
 ENV ARCHIVE typesafe-activator-${VERSION}-minimal.zip
